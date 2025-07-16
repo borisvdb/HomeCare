@@ -3,3 +3,6 @@
 /.godot
 /.godot/editor
 *.bin
+.godot/editor/script_editor_cache.cfg
+.godot/editor/filesystem_update4
+.godot/editor/editor_layout.cfg
