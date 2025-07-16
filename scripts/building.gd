@@ -822,6 +822,6 @@ func undo() -> void:
 func reset_transform(node : Node3D) -> Node3D:
 	node.rotation = Vector3(0,0,0)
 	node.get_child(0).rotation = Vector3(0,0,0)
-	node.get_child(0).set_meta("color", Color.AZURE)
+	node.get_child(0).set_meta("color", Color.WHITE)
 	node.position = Vector3(0,0,0)
 	return node

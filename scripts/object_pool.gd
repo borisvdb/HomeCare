@@ -29,7 +29,7 @@ func preload_scenes(scenes: Array[PackedScene], cat_index: int = -1) -> int:
 			inst.visible = false
 			inst.set_meta("cat_index", cat_index)
 			inst.set_meta("index", index)
-			inst.get_child(0).set_meta("color", Color.AZURE)
+			inst.get_child(0).set_meta("color", Color.WHITE)
 			instances.append(inst)
 		
 		category.append({
@@ -55,7 +55,7 @@ func preload_unlimited_scene(scene: PackedScene, cat_index: int) -> int:
 	
 	inst.set_meta("cat_index", cat_index)
 	inst.set_meta("index", category.size())
-	inst.get_child(0).set_meta("color", Color.AZURE)
+	inst.get_child(0).set_meta("color", Color.WHITE)
 	
 	instances.append(inst)
 		
@@ -83,7 +83,7 @@ func get_instance(index: int, cat_index: int) -> Node:
 			var inst = scene_data["scene"].instantiate()
 			inst.set_meta("cat_index", cat_index)
 			inst.set_meta("index", index)
-			inst.get_child(0).set_meta("color", Color.AZURE)
+			inst.get_child(0).set_meta("color", Color.WHITE)
 			scene_data["in_use"].append(inst)
 			return inst
 		else:

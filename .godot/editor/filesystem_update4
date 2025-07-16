@@ -1,7 +1,12 @@
-res://scenes/Main.tscn
-res://themes/buttons.tres
-res://scenes/Segments/Floor_1.tscn
-res://shaders/matcap_no_trans.gdshader
-res://materials/spectate_mode/mat_s_Floor.tres
 res://scenes/Segments/Floor_025.tscn
+res://shaders/matcap_no_trans.gdshader
 res://shaders/matcap.gdshader
+res://materials/spectate_mode/mat_s_Floor.tres
+res://themes/buttons.tres
+res://scenes/Main.tscn
+res://scenes/Segments/Floor_1.tscn
+res://materials/build_mode/mat_b_Floor.tres
+res://scripts/object_pool.gd
+res://scripts/building.gd
+res://materials/spectate_mode/mat_s_Wall.tres
+res://scenes/Segments/Floor_05.tscn
