@@ -1,0 +1,7 @@
+res://scenes/Main.tscn
+res://themes/buttons.tres
+res://scenes/Segments/Floor_1.tscn
+res://shaders/matcap_no_trans.gdshader
+res://materials/spectate_mode/mat_s_Floor.tres
+res://scenes/Segments/Floor_025.tscn
+res://shaders/matcap.gdshader
