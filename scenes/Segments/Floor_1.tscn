@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw617kbq054u0"]
+
+[ext_resource type="Material" uid="uid://cqj76hgx67wxd" path="res://materials/spectate_mode/mat_s_Floor.tres" id="1_mjuko"]
+[ext_resource type="Material" uid="uid://c35cyamruy86j" path="res://materials/build_mode/mat_b_Floor.tres" id="2_mjuko"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mjuko"]
+material = ExtResource("1_mjuko")
+size = Vector3(1, 0.15, 1)
+
+[node name="Floor_1" type="Node3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.073, 0)
+mesh = SubResource("BoxMesh_mjuko")
+surface_material_override/0 = ExtResource("2_mjuko")

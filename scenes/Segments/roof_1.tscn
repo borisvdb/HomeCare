@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bm2d0xop7h7ml"]
+
+[ext_resource type="PackedScene" uid="uid://cvx3cbhp8v3wb" path="res://models/segments/Roof_1.blend" id="1_h6aqv"]
+[ext_resource type="Material" uid="uid://eqinrv0htgcc" path="res://materials/build_mode/mat_b_Strip.tres" id="2_gfb08"]
+[ext_resource type="PackedScene" uid="uid://k5hao7jkq7ak" path="res://scenes/Rays_1.tscn" id="2_rkin5"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vlw7m"]
+size = Vector2(1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gfb08"]
+size = Vector3(0.002, 2.4, 1.15)
+
+[node name="Roof_1" instance=ExtResource("1_h6aqv")]
+
+[node name="Indicator" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0)
+mesh = SubResource("PlaneMesh_vlw7m")
+surface_material_override/0 = ExtResource("2_gfb08")
+metadata/wall_length = 1.0
+
+[node name="Rays" parent="." index="2" instance=ExtResource("2_rkin5")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="." index="3"]
+
+[node name="CollisionShape3D_Thin" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.073, 1.2, 0)
+shape = SubResource("BoxShape3D_gfb08")
+
+[node name="CollisionShape3D_Thin2" type="CollisionShape3D" parent="Area3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.073, 1.2, 0)
+shape = SubResource("BoxShape3D_gfb08")

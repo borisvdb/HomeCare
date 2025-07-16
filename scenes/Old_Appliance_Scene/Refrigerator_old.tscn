@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://ofhddkar3526"]
+
+[ext_resource type="Material" uid="uid://ca2asmssqbec2" path="res://materials/spectate_mode/mat_s_Door_Window.tres" id="1_jkmgs"]
+[ext_resource type="Script" uid="uid://dp3hw33rnpxm6" path="res://scripts/appliance.gd" id="1_nf6of"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gwh64"]
+size = Vector3(0.85, 1.85, 0.65)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nf6of"]
+cull_mode = 1
+shading_mode = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nf6of"]
+size = Vector3(0.85, 1.85, 0.65)
+
+[node name="Refrigerator" type="Node3D"]
+script = ExtResource("1_nf6of")
+metadata/Name = "Refrigerator"
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925, 0.2)
+mesh = SubResource("BoxMesh_gwh64")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_jkmgs")
+
+[node name="Outline" type="MeshInstance3D" parent="Node3D"]
+unique_name_in_owner = true
+transform = Transform3D(1.05, 0, 0, 0, 1.025, 0, 0, 0, 1.05, 0, 0.925, 0.2)
+visible = false
+mesh = SubResource("BoxMesh_gwh64")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_nf6of")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925, 0)
+shape = SubResource("BoxShape3D_nf6of")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]

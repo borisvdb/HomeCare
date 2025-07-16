@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr6gj41i7drxi"]
+
+[ext_resource type="PackedScene" uid="uid://c3ba3hcphhr6g" path="res://models/appliances/Refrigerator.blend" id="1_u2eox"]
+[ext_resource type="Material" uid="uid://ceq31r0gvcsk3" path="res://materials/Outline.tres" id="2_6ytgx"]
+
+[node name="Outline" instance=ExtResource("1_u2eox")]
+
+[node name="Refrigerator" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_6ytgx")

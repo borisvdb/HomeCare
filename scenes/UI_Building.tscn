@@ -1,0 +1,393 @@
+[gd_scene load_steps=12 format=3 uid="uid://bmytb0tm44qkq"]
+
+[ext_resource type="Script" uid="uid://d1pgc4yr7fv24" path="res://scripts/ui.gd" id="1_ka5ou"]
+[ext_resource type="Shader" uid="uid://dp12bvmc0cc0j" path="res://shaders/self_mod_add.gdshader" id="2_hfia0"]
+[ext_resource type="Theme" uid="uid://cktuqhdeum3lj" path="res://themes/buttons.tres" id="2_rj2at"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hfia0"]
+shader = ExtResource("2_hfia0")
+shader_parameter/mod_color = Color(0.27451, 0.54902, 0.435294, 1)
+
+[sub_resource type="Shader" id="Shader_hkqfl"]
+code = "shader_type canvas_item;
+
+uniform vec4 mod_color: source_color; // No hint needed in Godot 4
+
+vec3 overlay_blend(vec3 base, vec3 blend) {
+    vec3 result;
+    result.r = (base.r < 0.5) ? (2.0 * base.r * blend.r) : (1.0 - 2.0 * (1.0 - base.r) * (1.0 - blend.r));
+    result.g = (base.g < 0.5) ? (2.0 * base.g * blend.g) : (1.0 - 2.0 * (1.0 - base.g) * (1.0 - blend.g));
+    result.b = (base.b < 0.5) ? (2.0 * base.b * blend.b) : (1.0 - 2.0 * (1.0 - base.b) * (1.0 - blend.b));
+    return result;
+}
+
+void fragment() {
+
+    vec4 base_color = texture(TEXTURE, UV) * COLOR; // COLOR includes the theme color
+
+    vec3 final_color;
+
+	final_color = overlay_blend(base_color.rgb, mod_color.rgb);
+
+    // Clamp to prevent color overflow
+    COLOR = vec4(clamp(final_color, 0.0, 1.0), base_color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t43jl"]
+shader = SubResource("Shader_hkqfl")
+shader_parameter/mod_color = Color(0.53, 0.38584, 0.2597, 1)
+
+[sub_resource type="Shader" id="Shader_hfia0"]
+code = "shader_type canvas_item;
+
+uniform vec4 mod_color: source_color; // No hint needed in Godot 4
+
+vec3 overlay_blend(vec3 base, vec3 blend) {
+    vec3 result;
+    result.r = (base.r < 0.5) ? (2.0 * base.r * blend.r) : (1.0 - 2.0 * (1.0 - base.r) * (1.0 - blend.r));
+    result.g = (base.g < 0.5) ? (2.0 * base.g * blend.g) : (1.0 - 2.0 * (1.0 - base.g) * (1.0 - blend.g));
+    result.b = (base.b < 0.5) ? (2.0 * base.b * blend.b) : (1.0 - 2.0 * (1.0 - base.b) * (1.0 - blend.b));
+    return result;
+}
+
+void fragment() {
+
+    vec4 base_color = texture(TEXTURE, UV) * COLOR; // COLOR includes the theme color
+
+    vec3 final_color;
+
+	final_color = overlay_blend(base_color.rgb, mod_color.rgb);
+
+    // Clamp to prevent color overflow
+    COLOR = vec4(clamp(final_color, 0.0, 1.0), base_color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_00aeo"]
+shader = SubResource("Shader_hfia0")
+shader_parameter/mod_color = Color(0.275, 0.311667, 0.55, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qltgr"]
+shader = ExtResource("2_hfia0")
+shader_parameter/mod_color = Color(0.137255, 0.329412, 0.54902, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lundv"]
+shader = ExtResource("2_hfia0")
+shader_parameter/mod_color = Color(0.6, 0.121569, 0.121569, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hkqfl"]
+shader = ExtResource("2_hfia0")
+shader_parameter/mod_color = Color(0.5125, 0.45, 0.6, 1)
+
+[node name="UI_Building" type="CanvasLayer"]
+script = ExtResource("1_ka5ou")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Create_New_Floor" type="Button" parent="MarginContainer/VBoxContainer"]
+material = SubResource("ShaderMaterial_hfia0")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Create a new floor."
+focus_mode = 0
+theme = ExtResource("2_rj2at")
+text = "🪜"
+
+[node name="PlaceHolder" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(30, 35)
+layout_mode = 2
+
+[node name="PlaceHolder2" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(30, 35)
+layout_mode = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "Change the color of elements in your home."
+focus_mode = 0
+theme = ExtResource("2_rj2at")
+toggle_mode = false
+color = Color(0.941176, 1, 1, 1)
+edit_alpha = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Paint_Mode" type="Button" parent="MarginContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_t43jl")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Activate painting mode."
+focus_mode = 0
+theme = ExtResource("2_rj2at")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 22
+toggle_mode = true
+text = "🖌️"
+
+[node name="Make_Floors" type="Button" parent="MarginContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_00aeo")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Automatically generate floors in the current story.
+Clears all floors already placed."
+focus_mode = 0
+theme = ExtResource("2_rj2at")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 22
+text = "⬜"
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(227.5, 0)
+layout_mode = 2
+tab_alignment = 1
+current_tab = 0
+tab_focus_mode = 0
+
+[node name="Walls" type="OptionButton" parent="MarginContainer/HBoxContainer/TabContainer"]
+layout_mode = 2
+focus_mode = 0
+alignment = 1
+selected = 0
+allow_reselect = true
+item_count = 6
+popup/item_0/text = "1m Wall"
+popup/item_0/id = 0
+popup/item_1/text = "1m Wall Door"
+popup/item_1/id = 0
+popup/item_2/text = "1m Wall Window"
+popup/item_2/id = 0
+popup/item_3/text = "50cm Wall"
+popup/item_3/id = 3
+popup/item_4/text = "25cm Wall"
+popup/item_4/id = 0
+popup/item_5/text = "Wall Triangle"
+popup/item_5/id = 5
+metadata/_tab_index = 0
+
+[node name="Floors" type="OptionButton" parent="MarginContainer/HBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+alignment = 1
+selected = 0
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "1m Floor"
+popup/item_0/id = 0
+popup/item_1/text = "50cm Floor"
+popup/item_1/id = 0
+popup/item_2/text = "25cm Floor"
+popup/item_2/id = 0
+metadata/_tab_index = 1
+
+[node name="Stairs" type="OptionButton" parent="MarginContainer/HBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+selected = 0
+item_count = 2
+popup/item_0/text = "Stairs"
+popup/item_0/id = 0
+popup/item_1/text = "Banister"
+popup/item_1/id = 1
+metadata/_tab_index = 2
+
+[node name="Roofs" type="OptionButton" parent="MarginContainer/HBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+selected = 0
+allow_reselect = true
+item_count = 1
+popup/item_0/text = "1m Roof"
+popup/item_0/id = 0
+metadata/_tab_index = 3
+
+[node name="Appliances" type="OptionButton" parent="MarginContainer/HBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+selected = 0
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "Refrigerator"
+popup/item_0/id = 0
+popup/item_1/text = "Oven"
+popup/item_1/id = 1
+popup/item_2/text = "Washer & Dryer"
+popup/item_2/id = 2
+metadata/_tab_index = 4
+
+[node name="Undo" type="Button" parent="MarginContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_qltgr")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Undo the last segment placed."
+focus_mode = 0
+theme = ExtResource("2_rj2at")
+theme_override_font_sizes/font_size = 22
+text = "↶"
+
+[node name="Clear" type="Button" parent="MarginContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_lundv")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Clear all floors and walls in the current story."
+focus_mode = 0
+theme = ExtResource("2_rj2at")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 23
+text = "🗑️"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="PlaceHolder" type="Control" parent="MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="Save" type="Button" parent="MarginContainer/HBoxContainer2"]
+material = SubResource("ShaderMaterial_hkqfl")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+tooltip_text = "Save your current home."
+focus_mode = 0
+theme = ExtResource("2_rj2at")
+text = "💾"
+
+[node name="Floor_Plans" type="Button" parent="MarginContainer/HBoxContainer2"]
+material = SubResource("ShaderMaterial_hkqfl")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Upload your house's floor plans."
+focus_mode = 0
+theme = ExtResource("2_rj2at")
+theme_override_font_sizes/font_size = 18
+text = "📐"
+
+[node name="Floor_Plans_Popup" type="PopupPanel" parent="MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
+initial_position = 1
+size = Vector2i(125, 44)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer2/Floor_Plans_Popup"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 121.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Upload_Floor_Plans" type="Button" parent="MarginContainer/HBoxContainer2/Floor_Plans_Popup/HBoxContainer"]
+material = SubResource("ShaderMaterial_hkqfl")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Upload your house's floor plans."
+focus_mode = 0
+theme = ExtResource("2_rj2at")
+theme_override_font_sizes/font_size = 18
+text = "📤"
+
+[node name="PlaceHolder" type="Control" parent="MarginContainer/HBoxContainer2/Floor_Plans_Popup/HBoxContainer"]
+custom_minimum_size = Vector2(15, 30)
+layout_mode = 2
+
+[node name="Decrease_Floor_Plan_Size" type="Button" parent="MarginContainer/HBoxContainer2/Floor_Plans_Popup/HBoxContainer"]
+material = SubResource("ShaderMaterial_hkqfl")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Upload your house's floor plans."
+focus_mode = 0
+theme = ExtResource("2_rj2at")
+theme_override_font_sizes/font_size = 15
+text = "-"
+
+[node name="Increase_Floor_Plan_Size" type="Button" parent="MarginContainer/HBoxContainer2/Floor_Plans_Popup/HBoxContainer"]
+material = SubResource("ShaderMaterial_hkqfl")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Upload your house's floor plans."
+focus_mode = 0
+theme = ExtResource("2_rj2at")
+theme_override_font_sizes/font_size = 15
+text = "+"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Create_New_Floor" to="." method="_on_create_new_floor_button_down"]
+[connection signal="color_changed" from="MarginContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Paint_Mode" to="." method="_on_paint_mode_toggled"]
+[connection signal="button_down" from="MarginContainer/HBoxContainer/Make_Floors" to="." method="_on_make_floors_button_down"]
+[connection signal="tab_changed" from="MarginContainer/HBoxContainer/TabContainer" to="." method="_on_tab_container_tab_changed"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/TabContainer/Walls" to="." method="_on_option_item_selected"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/TabContainer/Floors" to="." method="_on_option_item_selected"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/TabContainer/Stairs" to="." method="_on_option_item_selected"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/TabContainer/Roofs" to="." method="_on_option_item_selected"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/TabContainer/Appliances" to="." method="_on_option_item_selected"]
+[connection signal="button_down" from="MarginContainer/HBoxContainer/Undo" to="." method="_on_undo_button_down"]
+[connection signal="button_down" from="MarginContainer/HBoxContainer/Clear" to="." method="_on_clear_button_down"]
+[connection signal="button_down" from="MarginContainer/HBoxContainer2/Save" to="." method="_on_save_button_down"]
+[connection signal="button_down" from="MarginContainer/HBoxContainer2/Floor_Plans" to="." method="_on_floor_plans_button_down"]
+[connection signal="button_down" from="MarginContainer/HBoxContainer2/Floor_Plans_Popup/HBoxContainer/Upload_Floor_Plans" to="." method="_on_upload_floor_plans_button_down"]
+[connection signal="button_down" from="MarginContainer/HBoxContainer2/Floor_Plans_Popup/HBoxContainer/Decrease_Floor_Plan_Size" to="." method="_on_decrease_floor_plan_size_button_down"]
+[connection signal="button_down" from="MarginContainer/HBoxContainer2/Floor_Plans_Popup/HBoxContainer/Increase_Floor_Plan_Size" to="." method="_on_increase_floor_plan_size_button_down"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0ialhiaib8u1"]
+
+[ext_resource type="PackedScene" uid="uid://c3ba3hcphhr6g" path="res://models/appliances/Refrigerator.blend" id="1_tmxmd"]
+[ext_resource type="Script" uid="uid://dp3hw33rnpxm6" path="res://scripts/appliance.gd" id="2_8y3ic"]
+[ext_resource type="PackedScene" uid="uid://dr6gj41i7drxi" path="res://scenes/Appliances/Outlines/refrigerator_outline.tscn" id="3_h8ibq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f6jck"]
+size = Vector3(0.85, 1.83964, 0.684207)
+
+[node name="Refrigerator" type="Node3D"]
+script = ExtResource("2_8y3ic")
+metadata/Name = "Refrigerator"
+
+[node name="Refrigerator2" parent="." instance=ExtResource("1_tmxmd")]
+
+[node name="Outline" parent="Refrigerator2" instance=ExtResource("3_h8ibq")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Area3D" type="Area3D" parent="Refrigerator2"]
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Refrigerator2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919818, 0.210957)
+shape = SubResource("BoxShape3D_f6jck")
+
+[node name="Warranty_Alert" type="Label3D" parent="Refrigerator2"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.325, 0.282)
+visible = false
+billboard = 1
+double_sided = false
+alpha_cut = 1
+modulate = Color(0.25098, 1, 0.839216, 1)
+text = "Warranty
+Expiring
+< 1 Month!"
+
+[node name="Maintenance_Alert" type="Label3D" parent="Refrigerator2"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.29535, 0.282025)
+visible = false
+billboard = 1
+double_sided = false
+alpha_cut = 1
+modulate = Color(1, 0.576471, 0.25098, 1)
+text = "Check
+Maintenance
+Soon!
+|"
+
+[node name="Maintenance_Alert_Urgent" type="Label3D" parent="Refrigerator2"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.295, 0.282)
+visible = false
+billboard = 1
+double_sided = false
+alpha_cut = 1
+modulate = Color(1, 0.25, 0.25, 1)
+text = "Check
+Maintenance
+Immediately!
+|"
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="input_event" from="Refrigerator2/Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Refrigerator2/Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Refrigerator2/Area3D" to="." method="_on_area_3d_mouse_exited"]

@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://c35cyamruy86j"]
+
+[ext_resource type="Shader" uid="uid://c7ok1c7xkhd5e" path="res://shaders/matcap_no_trans.gdshader" id="1_c5q65"]
+[ext_resource type="Texture2D" uid="uid://ctic5wcfmob63" path="res://textures/grids/concrete.png" id="2_yhtma"]
+[ext_resource type="Texture2D" uid="uid://drodcam3tjd6u" path="res://textures/matcap/mat_matte.jpg" id="3_3y0go"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_c5q65")
+shader_parameter/matcap = ExtResource("3_3y0go")
+shader_parameter/color = Color(0.46, 0.631, 1, 1)
+shader_parameter/albedo = ExtResource("2_yhtma")
+shader_parameter/use_vertex_colors = false
+shader_parameter/emission_amount = 0.0
+shader_parameter/normal_amount = 0.0
+shader_parameter/uv_blend_sharpness = 50.0
+shader_parameter/uv_offset = Vector3(0, 0, 0)
+shader_parameter/uv_scale = 1.0
+shader_parameter/uv_global = true

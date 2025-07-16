@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://d25ci3o4gd3hx"]
+
+[ext_resource type="PackedScene" uid="uid://2hiq4u72qx0k" path="res://models/segments/Wall_025.blend" id="1_l3bb1"]
+[ext_resource type="Material" uid="uid://df5jk7s82pg6" path="res://materials/build_mode/mat_b_Wall_.tres" id="2_qyghw"]
+[ext_resource type="PackedScene" uid="uid://bt2i5epbarnsl" path="res://scenes/Rays_025.tscn" id="2_vg2r7"]
+[ext_resource type="Material" uid="uid://4rv56dkqmep8" path="res://materials/build_mode/mat_b_Wall_Trans_Ext.tres" id="4_p0sk5"]
+[ext_resource type="Material" uid="uid://eqinrv0htgcc" path="res://materials/build_mode/mat_b_Strip.tres" id="5_qyghw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qyghw"]
+size = Vector2(1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8jtpj"]
+size = Vector3(0.002, 2.4, 0.4)
+
+[node name="Wall_025" instance=ExtResource("1_l3bb1")]
+
+[node name="Wall_025" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_qyghw")
+surface_material_override/2 = ExtResource("4_p0sk5")
+
+[node name="Indicator" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0)
+mesh = SubResource("PlaneMesh_qyghw")
+surface_material_override/0 = ExtResource("5_qyghw")
+metadata/wall_length = 1.0
+
+[node name="Rays" parent="." index="2" instance=ExtResource("2_vg2r7")]
+
+[node name="Area3D" type="Area3D" parent="." index="3"]
+
+[node name="CollisionShape3D_Thin" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.073, 1.2, 0)
+shape = SubResource("BoxShape3D_8jtpj")
+
+[node name="CollisionShape3D_Thin2" type="CollisionShape3D" parent="Area3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.073, 1.2, 0)
+shape = SubResource("BoxShape3D_8jtpj")

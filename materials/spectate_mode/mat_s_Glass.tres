@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://btyq6jt3mxwcw"]
+
+[ext_resource type="Shader" uid="uid://c7a3aav25saff" path="res://shaders/matcap.gdshader" id="1_s1ld1"]
+[ext_resource type="Texture2D" uid="uid://t4f0ovmtalh8" path="res://textures/matcap/mat_shiny.png" id="2_ehnt6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_s1ld1")
+shader_parameter/matcap = ExtResource("2_ehnt6")
+shader_parameter/color = Color(0.8556, 0.93, 0.92628, 1)
+shader_parameter/use_vertex_colors = false
+shader_parameter/emission_amount = 0.0
+shader_parameter/normal_amount = 0.0
+shader_parameter/uv_blend_sharpness = 50.0
+shader_parameter/uv_offset = Vector3(0, 0, 0)
+shader_parameter/uv_scale = 1.0
+shader_parameter/uv_global = false

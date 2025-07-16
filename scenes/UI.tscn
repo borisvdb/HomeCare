@@ -1,0 +1,184 @@
+[gd_scene load_steps=11 format=3 uid="uid://c18muj68ragkw"]
+
+[ext_resource type="Script" uid="uid://d1pgc4yr7fv24" path="res://scripts/ui.gd" id="1_nt7q6"]
+[ext_resource type="Theme" uid="uid://cktuqhdeum3lj" path="res://themes/buttons.tres" id="2_5en4g"]
+[ext_resource type="Shader" uid="uid://dp12bvmc0cc0j" path="res://shaders/self_mod_add.gdshader" id="2_ua6yw"]
+[ext_resource type="PackedScene" uid="uid://bpfhrcfp5o2lc" path="res://scenes/Colour_Swatch_Window.tscn" id="4_ua6yw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5en4g"]
+shader = ExtResource("2_ua6yw")
+shader_parameter/mod_color = Color(0.27451, 0.54902, 0.435294, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ua6yw"]
+shader = ExtResource("2_ua6yw")
+shader_parameter/mod_color = Color(0.54902, 0.27451, 0.27451, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75u2n"]
+shader = ExtResource("2_ua6yw")
+shader_parameter/mod_color = Color(0.54902, 0.27451, 0.27451, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3wlde"]
+shader = ExtResource("2_ua6yw")
+shader_parameter/mod_color = Color(0.513726, 0.45098, 0.6, 1)
+
+[sub_resource type="Shader" id="Shader_hfia0"]
+code = "shader_type canvas_item;
+
+uniform vec4 mod_color: source_color; // No hint needed in Godot 4
+
+vec3 overlay_blend(vec3 base, vec3 blend) {
+    vec3 result;
+    result.r = (base.r < 0.5) ? (2.0 * base.r * blend.r) : (1.0 - 2.0 * (1.0 - base.r) * (1.0 - blend.r));
+    result.g = (base.g < 0.5) ? (2.0 * base.g * blend.g) : (1.0 - 2.0 * (1.0 - base.g) * (1.0 - blend.g));
+    result.b = (base.b < 0.5) ? (2.0 * base.b * blend.b) : (1.0 - 2.0 * (1.0 - base.b) * (1.0 - blend.b));
+    return result;
+}
+
+void fragment() {
+
+    vec4 base_color = texture(TEXTURE, UV) * COLOR; // COLOR includes the theme color
+
+    vec3 final_color;
+
+	final_color = overlay_blend(base_color.rgb, mod_color.rgb);
+
+    // Clamp to prevent color overflow
+    COLOR = vec4(clamp(final_color, 0.0, 1.0), base_color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xpksx"]
+shader = SubResource("Shader_hfia0")
+shader_parameter/mod_color = Color(0.53, 0.38584, 0.2597, 1)
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_nt7q6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Floor_Up" type="Button" parent="MarginContainer/VBoxContainer"]
+material = SubResource("ShaderMaterial_5en4g")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Move up a floor."
+focus_mode = 0
+theme = ExtResource("2_5en4g")
+text = "⬆️"
+
+[node name="Floor_Down" type="Button" parent="MarginContainer/VBoxContainer"]
+material = SubResource("ShaderMaterial_5en4g")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Move down a floor."
+focus_mode = 0
+theme = ExtResource("2_5en4g")
+text = "⬇️"
+
+[node name="Rotate_CW" type="Button" parent="MarginContainer"]
+material = SubResource("ShaderMaterial_ua6yw")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Rotate clockwise."
+focus_mode = 0
+theme = ExtResource("2_5en4g")
+text = "↻"
+
+[node name="Rotate_CCW" type="Button" parent="MarginContainer"]
+material = SubResource("ShaderMaterial_75u2n")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+tooltip_text = "Rotate counter-clockwise."
+focus_mode = 0
+theme = ExtResource("2_5en4g")
+text = "↺"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Top_View" type="Button" parent="MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+tooltip_text = "Top view."
+focus_mode = 0
+theme = ExtResource("2_5en4g")
+toggle_mode = true
+text = "_"
+
+[node name="XRay_Mode" type="Button" parent="MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+tooltip_text = "X-Ray mode."
+focus_mode = 0
+theme = ExtResource("2_5en4g")
+toggle_mode = true
+text = "👁️"
+
+[node name="Building_Mode" type="Button" parent="MarginContainer"]
+material = SubResource("ShaderMaterial_3wlde")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+tooltip_text = "Toggle building mode."
+focus_mode = 0
+theme = ExtResource("2_5en4g")
+toggle_mode = true
+text = "🛠️"
+
+[node name="Colour_Swatches" type="Button" parent="MarginContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_xpksx")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "Display colour swatches."
+focus_mode = 0
+theme = ExtResource("2_5en4g")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 22
+text = "🎨"
+
+[node name="Colour_Swatch_Window" parent="." instance=ExtResource("4_ua6yw")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Floor_Up" to="." method="_on_floor_up_button_down"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Floor_Down" to="." method="_on_floor_down_button_down"]
+[connection signal="button_down" from="MarginContainer/Rotate_CW" to="." method="_on_rotate_cw_button_down"]
+[connection signal="button_down" from="MarginContainer/Rotate_CCW" to="." method="_on_rotate_ccw_button_down"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer2/Top_View" to="." method="_on_top_view_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer2/XRay_Mode" to="." method="_on_xray_mode_toggled"]
+[connection signal="toggled" from="MarginContainer/Building_Mode" to="." method="_on_building_mode_toggled"]
+[connection signal="button_down" from="MarginContainer/Colour_Swatches" to="." method="_on_colour_swatches_button_down"]
+[connection signal="close_requested" from="Colour_Swatch_Window" to="." method="_on_window_close_requested"]

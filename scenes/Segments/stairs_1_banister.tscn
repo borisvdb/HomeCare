@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://okmukilin06j"]
+
+[ext_resource type="PackedScene" uid="uid://21mbeepa0sg3" path="res://models/segments/Stairs_1_Banister.blend" id="1_srd2x"]
+
+[node name="Stairs_1_Banister" instance=ExtResource("1_srd2x")]
+
+[node name="Rays" type="Node3D" parent="." index="1"]

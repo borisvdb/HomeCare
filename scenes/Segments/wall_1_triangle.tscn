@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://dssmertxp2ted"]
+
+[ext_resource type="PackedScene" uid="uid://ci0fh33hg3oo1" path="res://models/segments/Wall_1_Triangle.blend" id="1_omo6k"]
+[ext_resource type="Material" uid="uid://df5jk7s82pg6" path="res://materials/build_mode/mat_b_Wall_.tres" id="2_3g152"]
+[ext_resource type="Material" uid="uid://4rv56dkqmep8" path="res://materials/build_mode/mat_b_Wall_Trans_Ext.tres" id="3_5oulx"]
+
+[node name="Wall_1_Triangle" instance=ExtResource("1_omo6k")]
+
+[node name="Wall_1_Triangle_001" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_3g152")
+surface_material_override/1 = ExtResource("3_5oulx")
+
+[node name="Roof_1_001" parent="Wall_1_Triangle_001" index="0"]
+visible = false
+
+[node name="Rays" type="Node3D" parent="." index="1"]
+
+[node name="RayCast_1" type="RayCast3D" parent="Rays" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 2, -0.5)
+exclude_parent = false
+target_position = Vector3(-10, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.84, 0, 0.0139998, 1)
+
+[node name="RayCast_2" type="RayCast3D" parent="Rays" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 2, -0.25)
+exclude_parent = false
+target_position = Vector3(-10, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.84, 0, 0.0139998, 1)
+
+[node name="RayCast_3" type="RayCast3D" parent="Rays" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 2, 0)
+exclude_parent = false
+target_position = Vector3(-10, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.84, 0, 0.0139998, 1)
+
+[node name="RayCast_4" type="RayCast3D" parent="Rays" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 2, 0.25)
+exclude_parent = false
+target_position = Vector3(-10, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.84, 0, 0.0139998, 1)
+
+[node name="RayCast_5" type="RayCast3D" parent="Rays" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 2, 0.5)
+exclude_parent = false
+target_position = Vector3(-10, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.84, 0, 0.0139998, 1)
+
+[node name="RayCast_6" type="RayCast3D" parent="Rays" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 2, 0.75)
+exclude_parent = false
+target_position = Vector3(-10, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.84, 0, 0.0139998, 1)
+
+[node name="RayCast_7" type="RayCast3D" parent="Rays" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 2, 1)
+exclude_parent = false
+target_position = Vector3(-10, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.84, 0, 0.0139998, 1)
+
+[node name="RayCast_8" type="RayCast3D" parent="Rays" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 2, 1.25)
+exclude_parent = false
+target_position = Vector3(-10, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.84, 0, 0.0139998, 1)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8ju7yqytwphf"]
+
+[ext_resource type="Material" uid="uid://hw50gg620x3j" path="res://materials/build_mode/mat_b_Marker.tres" id="1_x073y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qnwvq"]
+size = Vector3(0.15, 2.4, 0.025)
+
+[node name="Wall_Marker" type="Node3D"]
+
+[node name="cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+mesh = SubResource("BoxMesh_qnwvq")
+surface_material_override/0 = ExtResource("1_x073y")
+
+[node name="cube2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.2, 0)
+mesh = SubResource("BoxMesh_qnwvq")
+surface_material_override/0 = ExtResource("1_x073y")

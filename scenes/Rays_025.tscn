@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bt2i5epbarnsl"]
+
+[node name="Rays" type="Node3D"]
+
+[node name="RayCast_1" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 2, 0)
+exclude_parent = false
+target_position = Vector3(-10, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.84, 0, 0.0139998, 1)

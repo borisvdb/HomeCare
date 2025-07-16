@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://b2a18amng4idr"]
+
+[ext_resource type="Shader" uid="uid://c7a3aav25saff" path="res://shaders/matcap.gdshader" id="1_s6fpi"]
+[ext_resource type="Texture2D" uid="uid://d2vuhncexode7" path="res://textures/walls/s_Wall_Trans_Ext/Poliigon_BrickReclaimedRunning_7787_BaseColor.jpg" id="2_ebv6l"]
+[ext_resource type="Texture2D" uid="uid://dlu7j7sg0a05h" path="res://textures/matcap/mat_matte.png" id="3_ebv6l"]
+[ext_resource type="Texture2D" uid="uid://bfyff2jbv22ti" path="res://textures/walls/s_Wall_Trans_Ext/Poliigon_BrickReclaimedRunning_7787_Normal.png" id="4_ebv6l"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_s6fpi")
+shader_parameter/matcap = ExtResource("3_ebv6l")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/albedo = ExtResource("2_ebv6l")
+shader_parameter/use_vertex_colors = false
+shader_parameter/emission_amount = 0.0
+shader_parameter/normal_map = ExtResource("4_ebv6l")
+shader_parameter/normal_amount = -0.35
+shader_parameter/uv_blend_sharpness = 50.0
+shader_parameter/uv_offset = Vector3(0, 0, 0)
+shader_parameter/uv_scale = 0.375
+shader_parameter/uv_global = true

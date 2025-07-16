@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhsgtinpv2cil"]
+
+[ext_resource type="Script" uid="uid://dp3hw33rnpxm6" path="res://scripts/appliance.gd" id="1_bhc3d"]
+[ext_resource type="PackedScene" uid="uid://bw2ww8igbpnbv" path="res://models/appliances/Washer_Dryer.blend" id="2_bhc3d"]
+[ext_resource type="PackedScene" uid="uid://cl0ffgjlj4q3q" path="res://scenes/Appliances/Outlines/washer_dryer_outline.tscn" id="3_qnad4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f6jck"]
+size = Vector3(0.612848, 0.972849, 0.607987)
+
+[node name="Washer_Dryer" type="Node3D"]
+script = ExtResource("1_bhc3d")
+metadata/Name = "Washer & Dryer"
+
+[node name="Washer_Dryer" parent="." instance=ExtResource("2_bhc3d")]
+
+[node name="Outline" parent="Washer_Dryer" instance=ExtResource("3_qnad4")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Area3D" type="Area3D" parent="Washer_Dryer"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Washer_Dryer/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000735521, 0.486423, 0.177213)
+shape = SubResource("BoxShape3D_f6jck")
+
+[node name="Warranty_Alert" type="Label3D" parent="Washer_Dryer"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.424, 0.282)
+visible = false
+billboard = 1
+double_sided = false
+alpha_cut = 1
+modulate = Color(0.25098, 1, 0.839216, 1)
+text = "Warranty
+Expiring
+< 1 Month!"
+
+[node name="Maintenance_Alert" type="Label3D" parent="Washer_Dryer"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3941, 0.282025)
+visible = false
+billboard = 1
+double_sided = false
+alpha_cut = 1
+modulate = Color(1, 0.575, 0.25, 1)
+text = "Check
+Maintenance
+Soon!
+|"
+
+[node name="Maintenance_Alert_Urgent" type="Label3D" parent="Washer_Dryer"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.394, 0.282)
+visible = false
+billboard = 1
+double_sided = false
+alpha_cut = 1
+modulate = Color(1, 0.25, 0.25, 1)
+text = "Check
+Maintenance
+Immediately!
+|"
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="input_event" from="Washer_Dryer/Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Washer_Dryer/Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Washer_Dryer/Area3D" to="." method="_on_area_3d_mouse_exited"]

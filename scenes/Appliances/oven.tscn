@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://ej0po4ed3rt5"]
+
+[ext_resource type="PackedScene" uid="uid://cqum3i7w61nls" path="res://models/appliances/Oven.blend" id="1_5hj28"]
+[ext_resource type="Script" uid="uid://dp3hw33rnpxm6" path="res://scripts/appliance.gd" id="2_a5efc"]
+[ext_resource type="PackedScene" uid="uid://ci3t3br180g2o" path="res://scenes/Appliances/Outlines/oven_outline.tscn" id="3_ai5b6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a5efc"]
+size = Vector3(0.778845, 1.21425, 0.685938)
+
+[node name="Oven" type="Node3D"]
+script = ExtResource("2_a5efc")
+maintenance_threshold = 547
+metadata/Name = "Oven"
+
+[node name="Oven2" parent="." instance=ExtResource("1_5hj28")]
+
+[node name="Outline" parent="Oven2" instance=ExtResource("3_ai5b6")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Area3D" type="Area3D" parent="Oven2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Oven2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000103772, 0.607125, 0.213672)
+shape = SubResource("BoxShape3D_a5efc")
+
+[node name="Warranty_Alert" type="Label3D" parent="Oven2"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.412, 0.282)
+visible = false
+billboard = 1
+double_sided = false
+alpha_cut = 1
+modulate = Color(0.25, 1, 0.8375, 1)
+text = "Warranty
+Expiring
+< 1 Month!"
+
+[node name="Maintenance_Alert" type="Label3D" parent="Oven2"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.382, 0.282025)
+visible = false
+billboard = 1
+double_sided = false
+alpha_cut = 1
+modulate = Color(1, 0.576471, 0.25098, 1)
+text = "Check
+Maintenance
+Soon!
+|"
+
+[node name="Maintenance_Alert_Urgent" type="Label3D" parent="Oven2"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.382, 0.282025)
+visible = false
+billboard = 1
+double_sided = false
+alpha_cut = 1
+modulate = Color(1, 0.25, 0.25, 1)
+text = "Check
+Maintenance
+Immediately!
+|"
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="input_event" from="Oven2/Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Oven2/Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Oven2/Area3D" to="." method="_on_area_3d_mouse_exited"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl0ffgjlj4q3q"]
+
+[ext_resource type="PackedScene" uid="uid://bw2ww8igbpnbv" path="res://models/appliances/Washer_Dryer.blend" id="1_thns0"]
+[ext_resource type="Material" uid="uid://ceq31r0gvcsk3" path="res://materials/Outline.tres" id="2_htjm0"]
+
+[node name="Outline" instance=ExtResource("1_thns0")]
+
+[node name="Washer" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_htjm0")

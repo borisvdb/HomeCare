@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://cjb4aanhx1is8"]
+
+[sub_resource type="Gradient" id="Gradient_ua6yw"]
+offsets = PackedFloat32Array(0.590361, 0.662651, 0.707831, 0.728916)
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_75u2n"]
+gradient = SubResource("Gradient_ua6yw")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_21brl"]
+offsets = PackedFloat32Array(0.590361, 0.662651, 0.707831, 0.728916)
+colors = PackedColorArray(0, 1, 0.516667, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lmtkc"]
+gradient = SubResource("Gradient_21brl")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_75u2n"]
+offsets = PackedFloat32Array(0.590361, 0.662651, 0.707831, 0.728916)
+colors = PackedColorArray(1, 0.6, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3wlde"]
+gradient = SubResource("Gradient_75u2n")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_3wlde"]
+offsets = PackedFloat32Array(0.590361, 0.662651, 0.707831, 0.728916)
+colors = PackedColorArray(1, 0.9, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xpksx"]
+gradient = SubResource("Gradient_3wlde")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_xpksx"]
+offsets = PackedFloat32Array(0.590361, 0.662651, 0.707831, 0.728916)
+colors = PackedColorArray(0, 0.85, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_24e4x"]
+gradient = SubResource("Gradient_xpksx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Entry_List" type="ItemList"]
+custom_minimum_size = Vector2(0, 250)
+size_flags_vertical = 0
+focus_mode = 0
+theme_override_colors/font_hovered_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 10
+allow_search = false
+auto_width = true
+item_count = 5
+max_columns = 5
+fixed_column_width = 200
+fixed_icon_size = Vector2i(15, 15)
+item_0/text = "ID"
+item_0/icon = SubResource("GradientTexture2D_75u2n")
+item_0/selectable = false
+item_1/text = "Story"
+item_1/icon = SubResource("GradientTexture2D_lmtkc")
+item_1/selectable = false
+item_2/text = "Date"
+item_2/icon = SubResource("GradientTexture2D_3wlde")
+item_2/selectable = false
+item_3/text = "Time"
+item_3/icon = SubResource("GradientTexture2D_xpksx")
+item_3/selectable = false
+item_4/text = "Comment"
+item_4/icon = SubResource("GradientTexture2D_24e4x")
+item_4/selectable = false

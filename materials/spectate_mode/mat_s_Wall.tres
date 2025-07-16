@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c8iplgvi30ner"]
+
+[ext_resource type="Shader" uid="uid://c7ok1c7xkhd5e" path="res://shaders/matcap_no_trans.gdshader" id="1_uaqke"]
+[ext_resource type="Texture2D" uid="uid://dlu7j7sg0a05h" path="res://textures/matcap/mat_matte.png" id="2_27rmr"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uaqke")
+shader_parameter/matcap = ExtResource("2_27rmr")
+shader_parameter/color = Color(0.8832, 0.96, 0.95616, 1)
+shader_parameter/use_vertex_colors = true
+shader_parameter/emission_amount = 0.0
+shader_parameter/normal_amount = 0.0
+shader_parameter/uv_blend_sharpness = 50.0
+shader_parameter/uv_offset = Vector3(0, 0, 0)
+shader_parameter/uv_scale = 1.0
+shader_parameter/uv_global = true

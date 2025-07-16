@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6x3f8h2fjigi"]
+
+[ext_resource type="PackedScene" uid="uid://bripqokepdqtm" path="res://models/segments/Wall_1_Door.blend" id="1_htm30"]
+[ext_resource type="PackedScene" uid="uid://k5hao7jkq7ak" path="res://scenes/Rays_1.tscn" id="2_nxivk"]
+[ext_resource type="Material" uid="uid://df5jk7s82pg6" path="res://materials/build_mode/mat_b_Wall_.tres" id="2_rbsoi"]
+[ext_resource type="Material" uid="uid://4rv56dkqmep8" path="res://materials/build_mode/mat_b_Wall_Trans_Ext.tres" id="4_cxjfj"]
+[ext_resource type="Material" uid="uid://eqinrv0htgcc" path="res://materials/build_mode/mat_b_Strip.tres" id="5_rbsoi"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rbsoi"]
+size = Vector2(1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ar8jd"]
+size = Vector3(0.002, 2.4, 1.15)
+
+[node name="Wall_1_Door" instance=ExtResource("1_htm30")]
+
+[node name="Wall_1_Door" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_rbsoi")
+surface_material_override/3 = ExtResource("4_cxjfj")
+
+[node name="Indicator" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0)
+mesh = SubResource("PlaneMesh_rbsoi")
+surface_material_override/0 = ExtResource("5_rbsoi")
+metadata/wall_length = 1.0
+
+[node name="Rays" parent="." index="2" instance=ExtResource("2_nxivk")]
+
+[node name="Area3D" type="Area3D" parent="." index="3"]
+
+[node name="CollisionShape3D_Thin" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.073, 1.2, 0)
+shape = SubResource("BoxShape3D_ar8jd")
+
+[node name="CollisionShape3D_Thin2" type="CollisionShape3D" parent="Area3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.073, 1.2, 0)
+shape = SubResource("BoxShape3D_ar8jd")

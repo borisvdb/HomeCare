@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci3t3br180g2o"]
+
+[ext_resource type="PackedScene" uid="uid://cqum3i7w61nls" path="res://models/appliances/Oven.blend" id="1_6o1p8"]
+[ext_resource type="Material" uid="uid://ceq31r0gvcsk3" path="res://materials/Outline.tres" id="2_h1nn1"]
+
+[node name="Outline" instance=ExtResource("1_6o1p8")]
+
+[node name="Oven" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_h1nn1")

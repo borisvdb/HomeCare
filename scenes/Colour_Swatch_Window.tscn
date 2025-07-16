@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpfhrcfp5o2lc"]
+
+[ext_resource type="Theme" uid="uid://cktuqhdeum3lj" path="res://themes/buttons.tres" id="1_1rfhi"]
+[ext_resource type="Script" uid="uid://chbgaq5ptko5m" path="res://scripts/colour_swatch_window.gd" id="2_5na5e"]
+
+[node name="Colour_Swatch_Window" type="Window"]
+auto_translate_mode = 1
+title = "Colour Swatches"
+initial_position = 1
+size = Vector2i(334, 360)
+unresizable = true
+always_on_top = true
+max_size = Vector2i(720, 720)
+theme = ExtResource("1_1rfhi")
+script = ExtResource("2_5na5e")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -74.0
+offset_top = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="Start_Deleting" type="Button" parent="MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+tooltip_text = "Move up a floor."
+focus_mode = 0
+theme = ExtResource("1_1rfhi")
+text = "🧹"
+
+[node name="Refresh_Button" type="Button" parent="MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "🗘"
+
+[node name="ConfirmDelete" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "Delete Colour Swatches"
+initial_position = 1
+size = Vector2i(439, 100)
+always_on_top = true
+theme = ExtResource("1_1rfhi")
+ok_button_text = "Yes"
+dialog_text = "Are you sure you want to delete this swatch/swatches?"
+cancel_button_text = "No"
+
+[connection signal="button_down" from="MarginContainer2/HBoxContainer/Start_Deleting" to="." method="_on_start_deleting_button_down"]
+[connection signal="button_down" from="MarginContainer2/HBoxContainer/Refresh_Button" to="." method="_on_refresh_button_button_down"]
+[connection signal="confirmed" from="ConfirmDelete" to="." method="_on_confirm_delete_confirmed"]

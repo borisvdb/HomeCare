@@ -1,0 +1,664 @@
+[gd_scene load_steps=8 format=3 uid="uid://u5bnls8eokd6"]
+
+[ext_resource type="Script" uid="uid://v85ex0hd1hb7" path="res://scripts/warranty_info.gd" id="1_4m76u"]
+[ext_resource type="Shader" uid="uid://dp12bvmc0cc0j" path="res://shaders/self_mod_add.gdshader" id="2_gfw63"]
+[ext_resource type="Theme" uid="uid://cktuqhdeum3lj" path="res://themes/buttons.tres" id="4_nmbxu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jfaov"]
+shader = ExtResource("2_gfw63")
+shader_parameter/mod_color = Color(0.5125, 0.45, 0.6, 1)
+
+[sub_resource type="Animation" id="Animation_jfaov"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/PanelContainer:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.498039)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/PanelContainer2:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.498039)]
+}
+
+[sub_resource type="Animation" id="Animation_gfw63"]
+resource_name = "missing_info"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/PanelContainer:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.175, 0.35, 0.525, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.498039), Color(1, 0, 0, 0.627451), Color(1, 1, 1, 0.498039), Color(1, 0, 0, 0.627451), Color(1, 1, 1, 0.498039)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/PanelContainer2:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.175, 0.35, 0.525, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.498039), Color(1, 0, 0, 0.627451), Color(1, 1, 1, 0.498039), Color(1, 0, 0, 0.627451), Color(1, 1, 1, 0.498039)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4j645"]
+_data = {
+&"RESET": SubResource("Animation_jfaov"),
+&"missing_info": SubResource("Animation_gfw63")
+}
+
+[node name="Warranty_Info" type="Window"]
+auto_translate_mode = 1
+title = "Warranty Info"
+initial_position = 1
+size = Vector2i(795, 338)
+wrap_controls = true
+max_size = Vector2i(800, 800)
+keep_title_visible = true
+content_scale_aspect = 2
+theme_override_colors/title_outline_modulate = Color(0, 0, 0, 1)
+theme_override_constants/title_outline_size = 2
+script = ExtResource("1_4m76u")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Warranty_Expiry_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Click the Button in the Lower Right Corner to Create a New Warranty Card"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.498039)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 20
+
+[node name="1" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(300, 35)
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 8.0
+
+[node name="Appliance_Type" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/1"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.5
+offset_right = 118.0
+offset_bottom = 17.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Appliance Type"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Appliance_Type_Result" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Undefined"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Appliance_Type_Input" type="TextEdit" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/1"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+focus_mode = 1
+placeholder_text = "Undefined"
+wrap_mode = 1
+scroll_fit_content_width = true
+
+[node name="2" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(300, 35)
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 8.0
+
+[node name="Purchase_Date" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/2"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.5
+offset_right = 112.0
+offset_bottom = 17.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Purchase Date"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Purchase_Date_Result" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Undefined"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Purchase_Date_Input" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/2"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="p_DD" type="SpinBox" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/2/Purchase_Date_Input"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = 1.0
+max_value = 31.0
+value = 1.0
+rounded = true
+
+[node name="p_MM" type="SpinBox" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/2/Purchase_Date_Input"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 45)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = 1.0
+max_value = 12.0
+value = 1.0
+
+[node name="p_YYYY" type="SpinBox" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/2/Purchase_Date_Input"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 45)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = 1900.0
+max_value = 10000.0
+value = 1900.0
+
+[node name="3" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(300, 35)
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 8.0
+
+[node name="Serial_No" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/3"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.5
+offset_right = 70.0
+offset_bottom = 17.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Serial No"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Serial_No_Result" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 35)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Undefined"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Serial_No_Input" type="TextEdit" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/3"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(180, 35)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+focus_mode = 1
+placeholder_text = "0000-0000-0000-0000"
+wrap_mode = 1
+scroll_fit_content_width = true
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(1, 1, 1, 0.498039)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 20
+
+[node name="1" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 35)
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 8.0
+
+[node name="Owner_Name" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/1"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 103.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Owner Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Owner_Name_Result" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -103.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Undefined"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Owner_Name_Input" type="TextEdit" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/1"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+focus_mode = 1
+placeholder_text = "John Doe"
+wrap_mode = 1
+scroll_fit_content_width = true
+
+[node name="2" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 35)
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 8.0
+
+[node name="Expiration_Date" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 120.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Expiration Date"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Expiration_Date_Result" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Undefined"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Expiration_Date_Input" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/2"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="e_DD" type="SpinBox" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/2/Expiration_Date_Input"]
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = 1.0
+max_value = 31.0
+value = 1.0
+rounded = true
+
+[node name="e_MM" type="SpinBox" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/2/Expiration_Date_Input"]
+custom_minimum_size = Vector2(50, 45)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = 1.0
+max_value = 12.0
+value = 1.0
+
+[node name="e_YYYY" type="SpinBox" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/2/Expiration_Date_Input"]
+custom_minimum_size = Vector2(50, 45)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = 1900.0
+max_value = 10000.0
+value = 1900.0
+
+[node name="3" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 35)
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 8.0
+
+[node name="Brand_Name" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/3"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 98.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Brand Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Brand_Name_Result" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(185, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Undefined"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_overrun_behavior = 4
+
+[node name="Brand_Name_Input" type="TextEdit" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/3"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(185, 35)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+focus_mode = 1
+placeholder_text = "Generic Incorporated"
+wrap_mode = 1
+scroll_fit_content_width = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.498039)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="1" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+custom_minimum_size = Vector2(735, 35)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+
+[node name="Website_Link" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/1"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+offset_right = 143.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Warranty Site Link"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Website_Link_Result" type="LinkButton" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(550, 35)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -550.0
+offset_top = -10.5
+offset_bottom = 24.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Undefined"
+underline = 1
+uri = "Undefined"
+
+[node name="Website_Link_Input" type="TextEdit" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/1"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(550, 35)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -247.0
+offset_top = -4.0
+offset_bottom = 4.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+focus_mode = 1
+placeholder_text = "https://en.wikipedia.org/wiki/Wikipedia:Community_portal"
+wrap_mode = 1
+scroll_fit_content_width = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="Save" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_jfaov")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+tooltip_text = "Save your current home."
+focus_mode = 0
+theme = ExtResource("4_nmbxu")
+text = "💾"
+
+[node name="Edit_Button" type="Button" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("4_nmbxu")
+toggle_mode = true
+text = "📝"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_4j645")
+}
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="button_down" from="MarginContainer/HBoxContainer/Save" to="." method="_on_save_button_down"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Edit_Button" to="." method="_on_edit_button_toggled"]
