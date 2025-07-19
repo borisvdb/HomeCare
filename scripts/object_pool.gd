@@ -2,8 +2,8 @@ extends Node
 class_name ObjectPool
 
 const MAX_INSTANCES: int = 100
-#const MAX_INSTANCES: int = 2
-var use_fixed_size: bool = false #False for mobile and true for desktop
+var use_fixed_size := true #False for mobile and true for desktop
+var preload_instances := false
 
 var pool: Array = []
 
@@ -21,9 +21,9 @@ func preload_scenes(scenes: Array[PackedScene], cat_index: int = -1) -> int:
 		var instances: Array = []
 		var preload_count = 0
 		
-		if use_fixed_size and MAX_INSTANCES > 0:
+		if preload_instances and MAX_INSTANCES > 0: #use_fixed_size
 			preload_count = MAX_INSTANCES
-
+		
 		for i in range(preload_count):
 			var inst = scene.instantiate()
 			inst.visible = false
@@ -78,13 +78,15 @@ func get_instance(index: int, cat_index: int) -> Node:
 			var inst = scene_data["instances"].pop_back()
 			scene_data["in_use"].append(inst)
 			inst.visible = true
+			print("Getting existing instance")
 			return inst
-		elif not scene_data["use_fixed_size"]:
+		elif (!scene_data["use_fixed_size"]) or (scene_data["use_fixed_size"] and !preload_instances and scene_data["in_use"].size() < MAX_INSTANCES):
 			var inst = scene_data["scene"].instantiate()
 			inst.set_meta("cat_index", cat_index)
 			inst.set_meta("index", index)
 			inst.get_child(0).set_meta("color", Color.WHITE)
 			scene_data["in_use"].append(inst)
+			print("Getting new instance")
 			return inst
 		else:
 			print("All instances in use and fixed-size is enabled for index:", index)
