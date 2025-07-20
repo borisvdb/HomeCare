@@ -78,7 +78,7 @@ func get_instance(index: int, cat_index: int) -> Node:
 			var inst = scene_data["instances"].pop_back()
 			scene_data["in_use"].append(inst)
 			inst.visible = true
-			print("Getting existing instance")
+			#print("Getting existing instance")
 			return inst
 		elif (!scene_data["use_fixed_size"]) or (scene_data["use_fixed_size"] and !preload_instances and scene_data["in_use"].size() < MAX_INSTANCES):
 			var inst = scene_data["scene"].instantiate()
@@ -86,7 +86,7 @@ func get_instance(index: int, cat_index: int) -> Node:
 			inst.set_meta("index", index)
 			inst.get_child(0).set_meta("color", Color.WHITE)
 			scene_data["in_use"].append(inst)
-			print("Getting new instance")
+			#print("Getting new instance")
 			return inst
 		else:
 			print("All instances in use and fixed-size is enabled for index:", index)
