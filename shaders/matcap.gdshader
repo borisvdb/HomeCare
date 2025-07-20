@@ -14,6 +14,7 @@ uniform float uv_blend_sharpness : hint_range(0.0, 150.0, 0.001) = 50.0;
 uniform vec3 uv_offset = vec3(0.0, 0.0, 0.0);
 uniform float uv_scale = 1.0;
 uniform bool uv_global = true;
+uniform bool is_glass = false;
 
 // Bread and butter: Generates the MatCap's UV's
 vec2 generate_matcap_uv(vec3 _normal, vec3 _node_position_view) {
@@ -56,17 +57,22 @@ void fragment(){
 	vec4 albedo_tex = triplanar_texture(albedo, uv1_power_normal, uv1_triplanar_pos);
 
 	ALBEDO = albedo_tex.rgb;
-	ALPHA = 1.0;
-
+	
+	if (is_glass){
+		ALPHA = _matcap.r/3.0;
+	}
+	else{
+		ALPHA = 1.0;
+	}
+	
 	if (use_vertex_colors && (COLOR.r < 0.99 || COLOR.g < 0.99 || COLOR.b < 0.99)){
 		ALBEDO *= COLOR.rgb;
 	}
 	else{
 		ALBEDO *= color.rgb;
 	}
-
-    ALBEDO *= _matcap; // Sets the albedo to the matcap texture.
-
-    vec4 emission_col = texture(emission, matcap_uv);
-    ALBEDO += emission_col.rgb * emission_amount;
+	
+	ALBEDO *= _matcap; // Sets the albedo to the matcap texture.
+	vec4 emission_col = texture(emission, matcap_uv);
+	ALBEDO += emission_col.rgb * emission_amount;
 }
