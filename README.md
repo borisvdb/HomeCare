@@ -46,6 +46,4 @@ In order to create a Warranty Card, simply click on an appliance, select Warrant
 To create a Repair History Entry, click on an appliance, select Repair History and select Insert Row. Now you can create a new row to log the last time you have serviced this appliance. A warning will appear if the time since the last repair exceeds the maintenance schedule. Typically this is 1 year.
 
 In order to add a new colour to the colour swatch menu, go into build mode (🛠️), toggle the 🖌️ button to start painting, select your colour from the center-left colour picker and drag on top of existing wall segments to paint them the desired colour.
-Select 💾 to save and exit build mode, your wall will have the new colour. Select the 🎨 button to open the colour swatches and select 🗘 to see your newly added colour swatches. 
-
-Click outside of this box to close this window, for more information open the readme file or visit - https://github.com/borisvdb/HomeCare
+Select 💾 to save and exit build mode, your wall will have the new colour. Select the 🎨 button to open the colour swatches and select 🗘 to see your newly added colour swatches.
