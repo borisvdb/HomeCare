@@ -47,3 +47,6 @@ To create a Repair History Entry, click on an appliance, select Repair History a
 
 In order to add a new colour to the colour swatch menu, go into build mode (🛠️), toggle the 🖌️ button to start painting, select your colour from the center-left colour picker and drag on top of existing wall segments to paint them the desired colour.
 Select 💾 to save and exit build mode, your wall will have the new colour. Select the 🎨 button to open the colour swatches and select 🗘 to see your newly added colour swatches.
+
+If you want to view the welcome message again go to AppData/Local/HomeCare/save_data/settings.ini
+Open the file and change first_time from 0 to 1.
