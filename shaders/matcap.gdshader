@@ -57,21 +57,21 @@ void fragment(){
 	vec4 albedo_tex = triplanar_texture(albedo, uv1_power_normal, uv1_triplanar_pos);
 
 	ALBEDO = albedo_tex.rgb;
-	
+
 	if (is_glass){
 		ALPHA = _matcap.r/3.0;
 	}
 	else{
 		ALPHA = 1.0;
 	}
-	
+
 	if (use_vertex_colors && (COLOR.r < 0.99 || COLOR.g < 0.99 || COLOR.b < 0.99)){
 		ALBEDO *= COLOR.rgb;
 	}
 	else{
 		ALBEDO *= color.rgb;
 	}
-	
+
 	ALBEDO *= _matcap; // Sets the albedo to the matcap texture.
 	vec4 emission_col = texture(emission, matcap_uv);
 	ALBEDO += emission_col.rgb * emission_amount;
