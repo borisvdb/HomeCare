@@ -7,7 +7,9 @@ const AXIS_LOCK_THRES := 2.0
 
 var stored_cell_size : float
 
-var object_pool: ObjectPool
+#var object_pool : ObjectPool
+var object_pool : Node
+var object_pool_class : CSharpScript
 
 @onready var stories_handler: Node = %StoriesHandler
 @onready var multimesh_handler: Node = %MultimeshHandler
@@ -69,6 +71,7 @@ var single_segment_categories := []
 var cell_size := 1.0
 
 func _ready() -> void:
+	
 	w_draw.show()
 	append_new_dict() #Initial dictionaries and containers
 	add_scenes()
@@ -117,7 +120,8 @@ func start_building(building: bool) -> void:
 
 func add_scenes() -> void:
 	
-	object_pool = ObjectPool.new()
+	object_pool_class = load("res://scripts/object_pool.cs")
+	object_pool = object_pool_class.new()
 	
 	#CATEGORY 0 WALLS ------------------
 	var wall_scenes: Array[PackedScene] = [
@@ -129,7 +133,7 @@ func add_scenes() -> void:
 		preload("res://scenes/Segments/wall_1_triangle.tscn")
 	]
 	
-	object_pool.preload_scenes(wall_scenes)
+	object_pool.preload_scenes(wall_scenes, -1)
 	
 	var length_category_0 := []
 	length_category_0.append(1.0)
@@ -147,7 +151,7 @@ func add_scenes() -> void:
 		preload("res://scenes/Segments/Floor_05.tscn") #Change later to 50cm
 	]
 	
-	floor_cat_index = object_pool.preload_scenes(floor_scenes)
+	floor_cat_index = object_pool.preload_scenes(floor_scenes, -1)
 	floor_index = object_pool.preload_unlimited_scene(preload("res://scenes/Segments/Floor_025.tscn"), object_pool.get_size()-1)
 	
 	var length_category_1 := []
@@ -163,7 +167,7 @@ func add_scenes() -> void:
 		preload("res://scenes/Segments/stairs_1_banister.tscn")
 	]
 	
-	stairs_cat_index = object_pool.preload_scenes(stair_scenes)
+	stairs_cat_index = object_pool.preload_scenes(stair_scenes, -1)
 	
 	var length_category_2 := []
 	length_category_2.append(0.25)
@@ -176,7 +180,7 @@ func add_scenes() -> void:
 		preload("res://scenes/Segments/roof_1.tscn")
 	]
 	
-	roof_cat_index = object_pool.preload_scenes(roof_scenes)
+	roof_cat_index = object_pool.preload_scenes(roof_scenes, -1)
 	
 	var length_category_3 := []
 	length_category_3.append(1.0)
@@ -190,7 +194,7 @@ func add_scenes() -> void:
 		preload("res://scenes/Appliances/washer_dryer.tscn")
 	]
 	
-	appliance_cat_index = object_pool.preload_scenes(appliance_scenes)
+	appliance_cat_index = object_pool.preload_scenes(appliance_scenes, -1)
 	
 	var length_category_4 := []
 	length_category_4.append(0.5)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cx0s6mhfg5f8d"]
 
-[ext_resource type="Script" uid="uid://dovnytnsi8mbc" path="res://scenes/contextual_menu.gd" id="1_d3iqq"]
+[ext_resource type="Script" uid="uid://dovnytnsi8mbc" path="res://scripts/contextual_menu.gd" id="1_d3iqq"]
 [ext_resource type="Theme" uid="uid://cktuqhdeum3lj" path="res://themes/buttons.tres" id="2_jsplx"]
 
 [node name="Contextual_Menu" type="Window"]

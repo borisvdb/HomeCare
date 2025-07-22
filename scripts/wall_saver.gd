@@ -60,7 +60,7 @@ func save_occ_dict(n : int, dict_arr: Array, file_name: String, folder: String) 
 	sql_handler.close_db()
 	return true
 
-func load_occ_dict(dict_arr: Array, folder: String, story_container: Node3D, object_pool: ObjectPool) -> bool:
+func load_occ_dict(dict_arr: Array, folder: String, story_container: Node3D, object_pool) -> bool:
 	var path := "user://save_data/building_data/" + folder
 	var dir := DirAccess.open(path)
 	if dir:

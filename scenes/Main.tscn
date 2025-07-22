@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ddkp1stanbi3b" path="res://scripts/building.gd" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://ccssptg1bxli2" path="res://scripts/main.gd" id="1_jlsqs"]
 [ext_resource type="Theme" uid="uid://cktuqhdeum3lj" path="res://themes/buttons.tres" id="2_cvmbd"]
-[ext_resource type="Script" uid="uid://k81e70honlmo" path="res://scenes/confirmation_dialog.gd" id="2_mwfav"]
+[ext_resource type="Script" uid="uid://k81e70honlmo" path="res://scripts/confirmation_dialog.gd" id="2_mwfav"]
 [ext_resource type="PackedScene" uid="uid://cjalvbd6hgwlg" path="res://scenes/Repair_History.tscn" id="3_3p2gp"]
 [ext_resource type="Script" uid="uid://px5ry0plvw83" path="res://scripts/multimesh_handler.gd" id="3_bjd11"]
 [ext_resource type="PackedScene" uid="uid://v3o0hovlhssr" path="res://scenes/Welcome_Message.tscn" id="4_1nqs0"]
