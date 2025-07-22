@@ -7,7 +7,6 @@ const AXIS_LOCK_THRES := 2.0
 
 var stored_cell_size : float
 
-#var object_pool : ObjectPool
 var object_pool : Node
 var object_pool_class : CSharpScript
 
@@ -122,6 +121,7 @@ func add_scenes() -> void:
 	
 	object_pool_class = load("res://scripts/object_pool.cs")
 	object_pool = object_pool_class.new()
+	# object_pool = ObjectPool.new()
 	
 	#CATEGORY 0 WALLS ------------------
 	var wall_scenes: Array[PackedScene] = [

@@ -51,7 +51,7 @@ public partial class object_pool : Node
 			}
 
 			var new_scene_data = new SceneData(scene, MAX_INSTANCES, use_fixed_size);
-			new_scene_data.instances = instances;
+			// new_scene_data.instances = instances;
 			Variant v = Variant.From(new_scene_data);
 			category.Add(v);
 		}
@@ -79,8 +79,8 @@ public partial class object_pool : Node
 		new_scene_data.instances = instances;
 		Variant v = Variant.From(new_scene_data);
 		category.Add(v);
-
-		return category.Count;
+		
+		return inst.GetMeta("index").As<int>();
 	}
 
 	public Node get_instance(int index, int cat_index)
