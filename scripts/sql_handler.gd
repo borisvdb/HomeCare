@@ -100,10 +100,10 @@ func get_all_warranty_data(object_id: int) -> Array:
 	
 	return db.query_result
 
-func delete_col(id : int) -> void:
+func delete_col(c_name : String) -> void:
 	db.query_with_bindings("DELETE 
 							FROM colour_swatches
-							WHERE id = ?;", [id])
+							WHERE name = ?;", [c_name])
 
 func delete_repair(id : int) -> void:
 	db.query_with_bindings("DELETE 

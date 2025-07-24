@@ -1,61 +1,70 @@
 extends Window
 
-@onready var swatch := preload("res://scenes/Colour_Swatch.tscn")
-@onready var sw_gridcontainer := preload("res://scenes/Swatch_Grid_Container.tscn")
+@onready var swatch_list := preload("res://scenes/Swatch_List.tscn")
+@onready var swatch_icon := preload("res://textures/swatch.tres")
 
 @onready var confirm_delete : ConfirmationDialog = %ConfirmDelete
-var swatches := []
 
 @onready var scroll_container_child = get_child(0)
 
 func populate_swatches() -> void:
 	if scroll_container_child.get_child(0).get_child_count() > 0: #Free the last container
-		get_child(0).get_child(0).get_child(0).queue_free()
+		scroll_container_child.get_child(0).get_child(0).queue_free()
 	
 	var sql_handler : SQLHandler = SQLHandler.new()
 	sql_handler.initialize()
 	sql_handler.open_db()
 	
-	var container : GridContainer = GridContainer.new()
-	container.columns = 4
+	var swatch_list_inst : ItemList = swatch_list.instantiate()
 	
 	var results : Array = sql_handler.get_all_colour_swatch_data()
 	
-	for result in results:
-		var swatch_inst := swatch.instantiate()
-		var hex : String = result["hex"]
-		var c_name : String = result["name"]
-		var id : int = result["id"]
-		
-		swatch_inst._initialize(id, hex, result["story"], c_name,)
-		container.add_child(swatch_inst)
+	var hex_dict := {}
+	var i := 0
 	
-	scroll_container_child.get_child(0).add_child(container)
+	for result in results:
+		var c_name : String = result["name"]
+		var story : int = result["story"]
+		if hex_dict.has(c_name):
+			var val : Array = hex_dict[c_name]
+			val[0] += ", %d" % [story]
+			hex_dict[c_name] = val
+			swatch_list_inst.set_item_tooltip(val[1], val[0])
+			continue
+		var hex : String = result["hex"]
+		hex_dict[c_name] = ["Name: %s\nHex: %s\nStorey: %d" % [c_name, hex, story], i]
+		
+		swatch_list_inst.add_item(c_name, swatch_icon)
+		swatch_list_inst.set_item_icon_modulate(i, Color(hex))
+		swatch_list_inst.set_item_tooltip(i, hex_dict[c_name][0])
+		i+=1
+	
+	scroll_container_child.get_child(0).add_child(swatch_list_inst)
 	
 	sql_handler.close_db()
 	sql_handler.queue_free()
 
-func _on_refresh_button_button_down() -> void:
-	%Start_Deleting.button_pressed = false
+func _on_confirm_delete_confirmed() -> void:
+	var swatch_list_inst : ItemList = scroll_container_child.get_child(0).get_child(0)
+	var selected_items := swatch_list_inst.get_selected_items()
+	
+	for selected_item in selected_items:
+		var text := swatch_list_inst.get_item_text(selected_item)
+		delete_swatch(text)
+	
 	populate_swatches()
 
-func _on_start_deleting_button_down() -> void:
-	if scroll_container_child.get_child(0).get_child_count() == 0:
-		return
-	
-	var container = scroll_container_child.get_child(0).get_child(0)
-	
-	for col_swatch in container.get_children():
-		if col_swatch.queued_for_deletion:
-			swatches.append(col_swatch)
-	
-	if swatches.is_empty():
+func delete_swatch(c_name: String) -> void:
+	var sql_handler : SQLHandler = SQLHandler.new()
+	sql_handler.initialize()
+	sql_handler.open_db()
+	sql_handler.delete_col(c_name)
+	sql_handler.close_db()
+	sql_handler.queue_free()
+
+func _on_delete_button_up() -> void:
+	var swatch_list_inst : ItemList = scroll_container_child.get_child(0).get_child(0)
+	if swatch_list_inst.get_selected_items().is_empty():
 		return
 	
 	confirm_delete.show()
-
-func _on_confirm_delete_confirmed() -> void:
-	for col_swatch in swatches:
-		col_swatch.delete_swatch()
-	
-	swatches.clear()

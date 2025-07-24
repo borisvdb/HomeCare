@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://csjgtjyh6qvrt"]
-
-[node name="Swatch_GridContainer" type="GridContainer"]
-visible = false
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 5
-columns = 3

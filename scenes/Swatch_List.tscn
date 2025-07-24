@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvvsguyc533jj"]
+
+[ext_resource type="StyleBox" uid="uid://dqkbqemssmaa5" path="res://themes/gradient_panel.tres" id="1_a3lfb"]
+[ext_resource type="FontFile" uid="uid://c47fegdtcf7h7" path="res://fonts/robot/Roboto-VariableFont_wdth,wght.ttf" id="1_u40u2"]
+
+[node name="ItemList" type="ItemList"]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_colors/font_color = Color(0.94902, 0.941176, 0.937255, 1)
+theme_override_fonts/font = ExtResource("1_u40u2")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/panel = ExtResource("1_a3lfb")
+select_mode = 1
+max_text_lines = 2
+auto_height = true
+max_columns = 10
+same_column_width = true
+fixed_column_width = 70
+icon_mode = 0
+icon_scale = 0.25
