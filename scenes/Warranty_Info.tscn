@@ -1,8 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://u5bnls8eokd6"]
+[gd_scene load_steps=16 format=3 uid="uid://u5bnls8eokd6"]
 
 [ext_resource type="Script" uid="uid://v85ex0hd1hb7" path="res://scripts/warranty_info.gd" id="1_4m76u"]
+[ext_resource type="LabelSettings" uid="uid://13d1fvmgjm6t" path="res://themes/dark_text.tres" id="2_4j645"]
 [ext_resource type="Shader" uid="uid://dp12bvmc0cc0j" path="res://shaders/self_mod_add.gdshader" id="2_gfw63"]
+[ext_resource type="Theme" uid="uid://cf8g0pqh2v5b0" path="res://themes/gradient_panels.tres" id="3_xigpo"]
+[ext_resource type="LabelSettings" uid="uid://b8snq8fk1keig" path="res://themes/light_text.tres" id="4_ey824"]
+[ext_resource type="PackedScene" uid="uid://c3wkses7xm2wa" path="res://scenes/bg.tscn" id="4_jfaov"]
 [ext_resource type="Theme" uid="uid://cktuqhdeum3lj" path="res://themes/buttons.tres" id="4_nmbxu"]
+[ext_resource type="Theme" uid="uid://c5qxkakmf8ipp" path="res://themes/text_edit.tres" id="5_1w5sd"]
+[ext_resource type="FontFile" uid="uid://c47fegdtcf7h7" path="res://fonts/robot/Roboto-VariableFont_wdth,wght.ttf" id="5_et3xv"]
+[ext_resource type="StyleBox" uid="uid://dduqawpyrjlu3" path="res://themes/solid_panel.tres" id="5_ey824"]
+[ext_resource type="Theme" uid="uid://dfi8u0ogiiqmk" path="res://themes/spinbox.tres" id="6_1w5sd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jfaov"]
 shader = ExtResource("2_gfw63")
@@ -20,7 +28,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.498039)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -32,7 +40,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.498039)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_gfw63"]
@@ -48,7 +56,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.175, 0.35, 0.525, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.498039), Color(1, 0, 0, 0.627451), Color(1, 1, 1, 0.498039), Color(1, 0, 0, 0.627451), Color(1, 1, 1, 0.498039)]
+"values": [Color(1, 1, 1, 1), Color(1, 0.5, 0.5, 1), Color(1, 1, 1, 1), Color(1, 0.5, 0.5, 1), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -60,7 +68,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.175, 0.35, 0.525, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.498039), Color(1, 0, 0, 0.627451), Color(1, 1, 1, 0.498039), Color(1, 0, 0, 0.627451), Color(1, 1, 1, 0.498039)]
+"values": [Color(1, 1, 1, 1), Color(1, 0.5, 0.5, 1), Color(1, 1, 1, 1), Color(1, 0.5, 0.5, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4j645"]
@@ -71,10 +79,14 @@ _data = {
 
 [node name="Warranty_Info" type="Window"]
 auto_translate_mode = 1
+gui_embed_subwindows = true
 title = "Warranty Info"
 initial_position = 1
-size = Vector2i(795, 338)
+size = Vector2i(799, 316)
+visible = false
 wrap_controls = true
+always_on_top = true
+force_native = true
 max_size = Vector2i(800, 800)
 keep_title_visible = true
 content_scale_aspect = 2
@@ -106,11 +118,12 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "Click the Button in the Lower Right Corner to Create a New Warranty Card"
+label_settings = ExtResource("2_4j645")
 horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
-self_modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 2
+theme = ExtResource("3_xigpo")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -131,6 +144,7 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 8.0
 
 [node name="Appliance_Type" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/1"]
+self_modulate = Color(1, 1, 1, 0.498039)
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 1
 anchors_preset = 4
@@ -141,9 +155,8 @@ offset_right = 118.0
 offset_bottom = 17.5
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
 text = "Appliance Type"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -161,9 +174,8 @@ offset_top = -17.5
 offset_bottom = 17.5
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
 text = "Undefined"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -177,13 +189,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -120.0
 offset_top = -17.5
 offset_bottom = 17.5
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 4
 focus_mode = 1
+theme = ExtResource("5_1w5sd")
 placeholder_text = "Undefined"
 wrap_mode = 1
 scroll_fit_content_width = true
@@ -195,6 +208,7 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 8.0
 
 [node name="Purchase_Date" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/2"]
+modulate = Color(1, 1, 1, 0.498039)
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 1
 anchors_preset = 4
@@ -208,6 +222,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "Purchase Date"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -228,6 +243,7 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "Undefined"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -250,6 +266,7 @@ grow_vertical = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("6_1w5sd")
 min_value = 1.0
 max_value = 31.0
 value = 1.0
@@ -260,6 +277,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 45)
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("6_1w5sd")
 min_value = 1.0
 max_value = 12.0
 value = 1.0
@@ -269,6 +287,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 45)
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("6_1w5sd")
 min_value = 1900.0
 max_value = 10000.0
 value = 1900.0
@@ -280,6 +299,7 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 8.0
 
 [node name="Serial_No" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/3"]
+modulate = Color(1, 1, 1, 0.498039)
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 1
 anchors_preset = 4
@@ -293,6 +313,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "Serial No"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -313,6 +334,7 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "Undefined"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -333,6 +355,7 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 4
 focus_mode = 1
+theme = ExtResource("5_1w5sd")
 placeholder_text = "0000-0000-0000-0000"
 wrap_mode = 1
 scroll_fit_content_width = true
@@ -355,6 +378,7 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 8.0
 
 [node name="Owner_Name" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/1"]
+self_modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -367,6 +391,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "Owner Name"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -386,6 +411,7 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "Undefined"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -406,6 +432,7 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 4
 focus_mode = 1
+theme = ExtResource("5_1w5sd")
 placeholder_text = "John Doe"
 wrap_mode = 1
 scroll_fit_content_width = true
@@ -417,6 +444,7 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 8.0
 
 [node name="Expiration_Date" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/2"]
+self_modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -429,6 +457,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "Expiration Date"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -448,6 +477,7 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "Undefined"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -469,6 +499,7 @@ grow_vertical = 2
 [node name="e_DD" type="SpinBox" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/2/Expiration_Date_Input"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("6_1w5sd")
 min_value = 1.0
 max_value = 31.0
 value = 1.0
@@ -478,6 +509,7 @@ rounded = true
 custom_minimum_size = Vector2(50, 45)
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("6_1w5sd")
 min_value = 1.0
 max_value = 12.0
 value = 1.0
@@ -486,6 +518,7 @@ value = 1.0
 custom_minimum_size = Vector2(50, 45)
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("6_1w5sd")
 min_value = 1900.0
 max_value = 10000.0
 value = 1900.0
@@ -497,6 +530,7 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 8.0
 
 [node name="Brand_Name" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/3"]
+self_modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -509,6 +543,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "Brand Name"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -529,6 +564,7 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "Undefined"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 2
 vertical_alignment = 1
 text_overrun_behavior = 4
@@ -550,13 +586,14 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 4
 focus_mode = 1
+theme = ExtResource("5_1w5sd")
 placeholder_text = "Generic Incorporated"
 wrap_mode = 1
 scroll_fit_content_width = true
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
-self_modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 2
+theme_override_styles/panel = ExtResource("5_ey824")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2"]
 layout_mode = 2
@@ -572,6 +609,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 8.0
 
 [node name="Website_Link" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/1"]
+self_modulate = Color(1, 1, 1, 0.498039)
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 offset_right = 143.0
@@ -580,6 +618,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "Warranty Site Link"
+label_settings = ExtResource("4_ey824")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -599,6 +638,7 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("5_et3xv")
 text = "Undefined"
 underline = 1
 uri = "Undefined"
@@ -620,6 +660,7 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 4
 focus_mode = 1
+theme = ExtResource("5_1w5sd")
 placeholder_text = "https://en.wikipedia.org/wiki/Wikipedia:Community_portal"
 wrap_mode = 1
 scroll_fit_content_width = true
@@ -645,13 +686,17 @@ theme = ExtResource("4_nmbxu")
 text = "💾"
 
 [node name="Edit_Button" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+focus_mode = 0
 theme = ExtResource("4_nmbxu")
 toggle_mode = true
 text = "📝"
+
+[node name="BG" parent="." instance=ExtResource("4_jfaov")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

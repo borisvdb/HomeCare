@@ -6,8 +6,10 @@ extends Window
 @onready var confirm_delete : ConfirmationDialog = %ConfirmDelete
 var swatches := []
 
+@onready var scroll_container_child = get_child(0)
+
 func populate_swatches() -> void:
-	if get_child(0).get_child(0).get_child_count() > 0: #Free the last container
+	if scroll_container_child.get_child(0).get_child_count() > 0: #Free the last container
 		get_child(0).get_child(0).get_child(0).queue_free()
 	
 	var sql_handler : SQLHandler = SQLHandler.new()
@@ -28,7 +30,7 @@ func populate_swatches() -> void:
 		swatch_inst._initialize(id, hex, result["story"], c_name,)
 		container.add_child(swatch_inst)
 	
-	get_child(0).get_child(0).add_child(container)
+	scroll_container_child.get_child(0).add_child(container)
 	
 	sql_handler.close_db()
 	sql_handler.queue_free()
@@ -38,10 +40,10 @@ func _on_refresh_button_button_down() -> void:
 	populate_swatches()
 
 func _on_start_deleting_button_down() -> void:
-	if get_child(0).get_child(0).get_child_count() == 0:
+	if scroll_container_child.get_child(0).get_child_count() == 0:
 		return
 	
-	var container = get_child(0).get_child(0).get_child(0)
+	var container = scroll_container_child.get_child(0).get_child(0)
 	
 	for col_swatch in container.get_children():
 		if col_swatch.queued_for_deletion:

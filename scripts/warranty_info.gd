@@ -116,4 +116,5 @@ func set_time_remaining_till_date() -> void:
 
 func _on_close_requested() -> void:
 	_on_edit_button_toggled(false)
+	%Edit_Button.button_pressed = false
 	hide()

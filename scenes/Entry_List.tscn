@@ -1,4 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjb4aanhx1is8"]
+[gd_scene load_steps=12 format=3 uid="uid://cjb4aanhx1is8"]
+
+[ext_resource type="Theme" uid="uid://cf8g0pqh2v5b0" path="res://themes/gradient_panels.tres" id="1_lmtkc"]
 
 [sub_resource type="Gradient" id="Gradient_ua6yw"]
 offsets = PackedFloat32Array(0.590361, 0.662651, 0.707831, 0.728916)
@@ -47,8 +49,15 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Entry_List" type="ItemList"]
 custom_minimum_size = Vector2(0, 250)
-size_flags_vertical = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 focus_mode = 0
+theme = ExtResource("1_lmtkc")
 theme_override_colors/font_hovered_color = Color(1, 1, 1, 1)
 theme_override_constants/h_separation = 10
 allow_search = false

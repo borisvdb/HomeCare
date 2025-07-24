@@ -108,6 +108,7 @@ func populate_entry_list(order_column: String = "") -> void: #This has only been
 	
 	entry_list_inst.item_selected.connect(_on_item_selected)
 	entry_list_inst.item_activated.connect(_on_item_activated)
+	#entry_list_inst.item_selected.connect(_on_item_activated)
 	
 	this_child.add_child(entry_list_inst)
 	
@@ -197,8 +198,9 @@ func _on_input_window_time_close_requested() -> void:
 func _on_item_activated(index: int) -> void:
 	_on_item_selected(index)
 	populate_entry_list(entry_list_inst.get_item_text(column_index))
+	print("Sorting item: ", entry_list_inst.get_item_text(column_index))
 
-func _on_update_column_button_down() -> void:
+func _on_update_column_button_up() -> void:
 	if entry_list_inst.get_selected_items().size() < 1:
 		return
 	match column_index:
@@ -206,10 +208,10 @@ func _on_update_column_button_down() -> void:
 		3: input_window_time.show()
 		2: input_window_date.show()
 
-func _on_insert_row_button_down() -> void:
+func _on_insert_row_button_up() -> void:
 	input_window_insert_row.show()
 
-func _on_delete_row_button_down() -> void:
+func _on_delete_row_button_up() -> void:
 	if entry_list_inst.get_selected_items().size() < 1:
 		return
 	confirm_delete.show()

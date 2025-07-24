@@ -65,6 +65,8 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("quit"):
 		%ConfirmationDialog.show()
 
+#Everything below can be recoded in C#
+
 func create_save_data_folders() -> void:
 	var dir_access = DirAccess.open("user://")
 	

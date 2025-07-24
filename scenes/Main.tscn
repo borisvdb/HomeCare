@@ -88,29 +88,28 @@ metadata/_edit_lock_ = true
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
+gui_embed_subwindows = true
 title = "Quit Application"
 initial_position = 1
 size = Vector2i(252, 100)
-always_on_top = true
+force_native = true
 theme = ExtResource("2_cvmbd")
 dialog_text = "Are you sure you want to quit?"
 script = ExtResource("2_mwfav")
 
 [node name="Welcome_Message" parent="." instance=ExtResource("4_1nqs0")]
 unique_name_in_owner = true
-visible = false
+gui_embed_subwindows = true
+always_on_top = true
 
 [node name="Warranty_Info" parent="." instance=ExtResource("4_nfivy")]
 unique_name_in_owner = true
-visible = false
 
 [node name="Repair_History" parent="." instance=ExtResource("3_3p2gp")]
 unique_name_in_owner = true
-visible = false
 
 [node name="Contextual_Menu" parent="." instance=ExtResource("5_ft6cd")]
 unique_name_in_owner = true
-visible = false
 
 [node name="MultimeshHandler" type="Node" parent="."]
 unique_name_in_owner = true

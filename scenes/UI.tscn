@@ -171,7 +171,6 @@ text = "🎨"
 
 [node name="Colour_Swatch_Window" parent="." instance=ExtResource("4_ua6yw")]
 unique_name_in_owner = true
-visible = false
 
 [connection signal="button_down" from="MarginContainer/VBoxContainer/Floor_Up" to="." method="_on_floor_up_button_down"]
 [connection signal="button_down" from="MarginContainer/VBoxContainer/Floor_Down" to="." method="_on_floor_down_button_down"]
@@ -180,5 +179,5 @@ visible = false
 [connection signal="toggled" from="MarginContainer/VBoxContainer2/Top_View" to="." method="_on_top_view_toggled"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer2/XRay_Mode" to="." method="_on_xray_mode_toggled"]
 [connection signal="toggled" from="MarginContainer/Building_Mode" to="." method="_on_building_mode_toggled"]
-[connection signal="button_down" from="MarginContainer/Colour_Swatches" to="." method="_on_colour_swatches_button_down"]
+[connection signal="button_up" from="MarginContainer/Colour_Swatches" to="." method="_on_colour_swatches_button_up"]
 [connection signal="close_requested" from="Colour_Swatch_Window" to="." method="_on_window_close_requested"]

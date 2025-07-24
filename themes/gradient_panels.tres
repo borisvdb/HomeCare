@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cf8g0pqh2v5b0"]
+
+[ext_resource type="FontFile" uid="uid://c47fegdtcf7h7" path="res://fonts/robot/Roboto-VariableFont_wdth,wght.ttf" id="1_5lb2g"]
+[ext_resource type="StyleBox" uid="uid://dqkbqemssmaa5" path="res://themes/gradient_panel.tres" id="2_ku7v6"]
+
+[resource]
+ItemList/colors/font_color = Color(1, 1, 1, 1)
+ItemList/colors/font_hovered_color = Color(0.51, 0.714167, 1, 1)
+ItemList/font_sizes/font_size = 14
+ItemList/fonts/font = ExtResource("1_5lb2g")
+ItemList/styles/panel = ExtResource("2_ku7v6")
+PanelContainer/styles/panel = ExtResource("2_ku7v6")

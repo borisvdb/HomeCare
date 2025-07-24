@@ -49,6 +49,24 @@ void vertex() {
     }
 }
 
+//BLENDING MODES
+
+vec4 multiply(vec4 base, vec4 blend){
+	return base * blend;
+}
+
+vec4 overlay(vec4 base, vec4 blend){
+	vec4 limit = step(0.5, base);
+	return mix(2.0 * base * blend, 1.0 - 2.0 * (1.0 - base) * (1.0 - blend), limit);
+}
+
+vec4 color_dodge(vec4 base, vec4 blend, float amount){
+	return base / (amount - blend);
+}
+
+
+//
+
 void fragment(){
 	vec2 matcap_uv = (generate_matcap_uv(NORMAL, NODE_POSITION_VIEW)); // Matcap UV's
 
@@ -73,6 +91,9 @@ void fragment(){
 	}
 
 	ALBEDO *= _matcap; // Sets the albedo to the matcap texture.
+	vec4 blended_color = color_dodge(vec4(ALBEDO, 1.0), vec4(_matcap, 1.0), 0.9);
+	ALBEDO = blended_color.rgb;
+
 	vec4 emission_col = texture(emission, matcap_uv);
 	ALBEDO += emission_col.rgb * emission_amount;
 }

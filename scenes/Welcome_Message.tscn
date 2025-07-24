@@ -1,18 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://v3o0hovlhssr"]
+[gd_scene load_steps=5 format=3 uid="uid://v3o0hovlhssr"]
 
 [ext_resource type="Script" uid="uid://cgchgo63vs6f7" path="res://scripts/welcome_message.gd" id="1_1uleb"]
+[ext_resource type="LabelSettings" uid="uid://dr3dkvv483n6k" path="res://themes/light_text_title.tres" id="3_p0ykf"]
+[ext_resource type="LabelSettings" uid="uid://b8snq8fk1keig" path="res://themes/light_text.tres" id="3_p6kxf"]
+[ext_resource type="Theme" uid="uid://dy64fd16ugyqb" path="res://themes/rich_text.tres" id="4_p0ykf"]
 
 [node name="Welcome_Message" type="Window"]
 auto_translate_mode = 1
+transparent_bg = true
 initial_position = 1
 size = Vector2i(575, 575)
+visible = false
 unresizable = true
-borderless = true
+transparent = true
+force_native = true
 script = ExtResource("1_1uleb")
 
 [node name="Page_1" type="MarginContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,11 +34,13 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Page_1/VBoxContainer"]
 layout_mode = 2
 text = "Welcome to HomeCare"
+label_settings = ExtResource("3_p0ykf")
 horizontal_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Page_1/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("4_p0ykf")
 text = "
 Hold Spacebar to pan
 Scroll Wheel to zoom
@@ -57,13 +64,16 @@ Build Mode:
 	🪜 to create a new floor"
 
 [node name="Label2" type="Label" parent="Page_1"]
+self_modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Page 1 of 2- Click to Continue"
+label_settings = ExtResource("3_p6kxf")
 
 [node name="Page_2" type="MarginContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -80,25 +90,30 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Page_2/VBoxContainer"]
 layout_mode = 2
 text = "Welcome to HomeCare"
+label_settings = ExtResource("3_p0ykf")
 horizontal_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Page_2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "In order to create a Warranty Card, simply click on an appliance, select Warrant Info and select the 📝 button, and fill in the  information. A warning will appear if your warranty is set to expire in less than 1 month.
+theme = ExtResource("4_p0ykf")
+text = "
+In order to create a Warranty Card, simply click on an appliance, select Warrant Info and select the 📝 button, and fill in the  information. A warning will appear if your warranty is set to expire in less than 1 month.
 
 To create a Repair History Entry, click on an appliance, select Repair History and select Insert Row. Now you can create a new row to log the last time you have serviced this appliance. A warning will appear if the time since the last repair exceeds the maintenance schedule. Typically this is 1 year.
 
 In order to add a new colour to the colour swatch menu, go into build mode (🛠️), toggle the 🖌️ button to start painting, select your colour from the center-left colour picker and drag on top of existing wall segments to paint them the desired colour.
 Select 💾 to save and exit build mode, your wall will have the new colour. Select the 🎨 button to open the colour swatches and select 🗘 to see your newly added colour swatches. 
 
-Click outside of this box to close this window, for more information open the readme file or visit - https://github.com/borisvdb/HomeCare"
+For more information open the readme file or visit - https://github.com/borisvdb/HomeCare"
 
 [node name="Label" type="Label" parent="Page_2"]
+self_modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Page 2 of 2- Click to Continue"
+label_settings = ExtResource("3_p6kxf")
 
 [node name="Next_Page" type="Button" parent="."]
 anchors_preset = 15
@@ -108,5 +123,17 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[node name="BG" type="ColorRect" parent="."]
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0.360784, 0.701961, 0.756863, 1)
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="button_down" from="Next_Page" to="." method="_on_next_page_button_down"]

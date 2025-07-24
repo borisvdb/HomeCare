@@ -84,12 +84,12 @@ func get_all_colour_swatch_data() -> Array:
 			ORDER BY story;")
 	
 	return db.query_result
-
+#cccac8
 func get_all_repair_data(object_id: int, order_column: String) -> Array:
 	db.query_with_bindings("SELECT * 
 							FROM repair_history 
 							WHERE object_id = ? 
-							ORDER BY ?;", [object_id, order_column])
+							ORDER BY "+order_column+";", [object_id])
 	
 	return db.query_result
 

@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dfi8u0ogiiqmk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6llp7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[resource]
+SpinBox/colors/down_disabled_icon_modulate = Color(0.88, 0.88, 0.88, 0)
+SpinBox/colors/down_hover_icon_modulate = Color(0.95, 0.95, 0.95, 0)
+SpinBox/colors/down_icon_modulate = Color(0.88, 0.88, 0.88, 0)
+SpinBox/colors/down_pressed_icon_modulate = Color(0.95, 0.95, 0.95, 0)
+SpinBox/colors/up_disabled_icon_modulate = Color(0.88, 0.88, 0.88, 0)
+SpinBox/colors/up_hover_icon_modulate = Color(0.95, 0.95, 0.95, 0)
+SpinBox/colors/up_icon_modulate = Color(0.88, 0.88, 0.88, 0)
+SpinBox/colors/up_pressed_icon_modulate = Color(0.95, 0.95, 0.95, 0)
+SpinBox/constants/buttons_width = 16
+SpinBox/constants/field_and_buttons_separation = -16
+SpinBox/styles/field_and_buttons_separator = SubResource("StyleBoxFlat_6llp7")

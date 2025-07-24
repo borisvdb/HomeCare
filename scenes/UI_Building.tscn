@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmytb0tm44qkq"]
+[gd_scene load_steps=15 format=3 uid="uid://bmytb0tm44qkq"]
 
 [ext_resource type="Script" uid="uid://d1pgc4yr7fv24" path="res://scripts/ui.gd" id="1_ka5ou"]
 [ext_resource type="Shader" uid="uid://dp12bvmc0cc0j" path="res://shaders/self_mod_add.gdshader" id="2_hfia0"]
 [ext_resource type="Theme" uid="uid://cktuqhdeum3lj" path="res://themes/buttons.tres" id="2_rj2at"]
+[ext_resource type="Theme" uid="uid://bpob1ao3arvnj" path="res://themes/tab_container.tres" id="4_00aeo"]
+[ext_resource type="FontFile" uid="uid://c47fegdtcf7h7" path="res://fonts/robot/Roboto-VariableFont_wdth,wght.ttf" id="4_hkqfl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hfia0"]
 shader = ExtResource("2_hfia0")
@@ -80,6 +82,9 @@ shader_parameter/mod_color = Color(0.6, 0.121569, 0.121569, 1)
 shader = ExtResource("2_hfia0")
 shader_parameter/mod_color = Color(0.5125, 0.45, 0.6, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfia0"]
+bg_color = Color(0.94902, 0.941176, 0.937255, 1)
+
 [node name="UI_Building" type="CanvasLayer"]
 script = ExtResource("1_ka5ou")
 
@@ -122,7 +127,7 @@ layout_mode = 2
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer"]
 clip_contents = true
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(40, 32)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -172,6 +177,7 @@ text = "⬜"
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(227.5, 0)
 layout_mode = 2
+theme = ExtResource("4_00aeo")
 tab_alignment = 1
 current_tab = 0
 tab_focus_mode = 0
@@ -179,6 +185,7 @@ tab_focus_mode = 0
 [node name="Walls" type="OptionButton" parent="MarginContainer/HBoxContainer/TabContainer"]
 layout_mode = 2
 focus_mode = 0
+theme = ExtResource("4_00aeo")
 alignment = 1
 selected = 0
 allow_reselect = true
@@ -201,6 +208,8 @@ metadata/_tab_index = 0
 visible = false
 layout_mode = 2
 focus_mode = 0
+theme = ExtResource("4_00aeo")
+theme_override_fonts/font = ExtResource("4_hkqfl")
 alignment = 1
 selected = 0
 allow_reselect = true
@@ -217,6 +226,8 @@ metadata/_tab_index = 1
 visible = false
 layout_mode = 2
 focus_mode = 0
+theme = ExtResource("4_00aeo")
+theme_override_fonts/font = ExtResource("4_hkqfl")
 selected = 0
 item_count = 2
 popup/item_0/text = "Stairs"
@@ -229,6 +240,8 @@ metadata/_tab_index = 2
 visible = false
 layout_mode = 2
 focus_mode = 0
+theme = ExtResource("4_00aeo")
+theme_override_fonts/font = ExtResource("4_hkqfl")
 selected = 0
 allow_reselect = true
 item_count = 1
@@ -240,6 +253,8 @@ metadata/_tab_index = 3
 visible = false
 layout_mode = 2
 focus_mode = 0
+theme = ExtResource("4_00aeo")
+theme_override_fonts/font = ExtResource("4_hkqfl")
 selected = 0
 allow_reselect = true
 item_count = 3
@@ -311,20 +326,29 @@ text = "📐"
 
 [node name="Floor_Plans_Popup" type="PopupPanel" parent="MarginContainer/HBoxContainer2"]
 unique_name_in_owner = true
+transparent_bg = false
+gui_embed_subwindows = true
+title = "Floor Plans"
 initial_position = 1
-size = Vector2i(125, 44)
+size = Vector2i(138, 44)
+borderless = false
+transparent = false
+force_native = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_hfia0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer2/Floor_Plans_Popup"]
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 121.0
-offset_bottom = 40.0
+offset_right = 138.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="PlaceHolder2" type="Control" parent="MarginContainer/HBoxContainer2/Floor_Plans_Popup/HBoxContainer"]
+custom_minimum_size = Vector2(7, 30)
+layout_mode = 2
 
 [node name="Upload_Floor_Plans" type="Button" parent="MarginContainer/HBoxContainer2/Floor_Plans_Popup/HBoxContainer"]
 material = SubResource("ShaderMaterial_hkqfl")
@@ -368,10 +392,13 @@ text = "+"
 
 [node name="FileDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
+gui_embed_subwindows = true
 title = "Open a File"
+position = Vector2i(0, 36)
 ok_button_text = "Open"
 file_mode = 0
 access = 2
+use_native_dialog = true
 
 [connection signal="button_down" from="MarginContainer/VBoxContainer/Create_New_Floor" to="." method="_on_create_new_floor_button_down"]
 [connection signal="color_changed" from="MarginContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

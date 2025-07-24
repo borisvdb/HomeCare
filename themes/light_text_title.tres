@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dr3dkvv483n6k"]
+
+[ext_resource type="FontFile" uid="uid://c47fegdtcf7h7" path="res://fonts/robot/Roboto-VariableFont_wdth,wght.ttf" id="1_hc4t7"]
+
+[resource]
+font = ExtResource("1_hc4t7")
+font_size = 18
+outline_size = 1
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.117647)

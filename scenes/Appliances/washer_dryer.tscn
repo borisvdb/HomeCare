@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhsgtinpv2cil"]
+[gd_scene load_steps=6 format=3 uid="uid://bhsgtinpv2cil"]
 
 [ext_resource type="Script" uid="uid://dp3hw33rnpxm6" path="res://scripts/appliance.gd" id="1_bhc3d"]
 [ext_resource type="PackedScene" uid="uid://bw2ww8igbpnbv" path="res://models/appliances/Washer_Dryer.blend" id="2_bhc3d"]
 [ext_resource type="PackedScene" uid="uid://cl0ffgjlj4q3q" path="res://scenes/Appliances/Outlines/washer_dryer_outline.tscn" id="3_qnad4"]
+[ext_resource type="FontFile" uid="uid://0kn36f0xwpcv" path="res://fonts/robot/Roboto-Italic-VariableFont_wdth,wght.ttf" id="4_qnad4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f6jck"]
 size = Vector3(0.612848, 0.972849, 0.607987)
@@ -34,6 +35,7 @@ modulate = Color(0.25098, 1, 0.839216, 1)
 text = "Warranty
 Expiring
 < 1 Month!"
+font = ExtResource("4_qnad4")
 
 [node name="Maintenance_Alert" type="Label3D" parent="Washer_Dryer"]
 unique_name_in_owner = true
@@ -46,7 +48,8 @@ modulate = Color(1, 0.575, 0.25, 1)
 text = "Check
 Maintenance
 Soon!
-|"
+￬"
+font = ExtResource("4_qnad4")
 
 [node name="Maintenance_Alert_Urgent" type="Label3D" parent="Washer_Dryer"]
 unique_name_in_owner = true
@@ -59,7 +62,8 @@ modulate = Color(1, 0.25, 0.25, 1)
 text = "Check
 Maintenance
 Immediately!
-|"
+￬"
+font = ExtResource("4_qnad4")
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

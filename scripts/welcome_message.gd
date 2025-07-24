@@ -1,8 +1,5 @@
 extends Window
 
-func _on_focus_exited() -> void:
-	hide()
-
 func _on_next_page_button_down() -> void:
 	if %Page_2.visible == false:
 		%Page_1.hide()
@@ -11,3 +8,7 @@ func _on_next_page_button_down() -> void:
 	
 	%Page_1.show()
 	%Page_2.hide()
+
+
+func _on_close_requested() -> void:
+	hide()

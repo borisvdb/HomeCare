@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c5qxkakmf8ipp"]
+
+[ext_resource type="FontFile" uid="uid://c47fegdtcf7h7" path="res://fonts/robot/Roboto-VariableFont_wdth,wght.ttf" id="1_oitgy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4v06e"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.2, 0.2, 0.498039)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[resource]
+TextEdit/colors/caret_color = Color(0.2, 0.2, 0.2, 1)
+TextEdit/colors/font_color = Color(0.2, 0.2, 0.2, 1)
+TextEdit/colors/font_placeholder_color = Color(0.2, 0.2, 0.2, 0.498039)
+TextEdit/font_sizes/font_size = 14
+TextEdit/fonts/font = ExtResource("1_oitgy")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_4v06e")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0ialhiaib8u1"]
+[gd_scene load_steps=6 format=3 uid="uid://d0ialhiaib8u1"]
 
 [ext_resource type="PackedScene" uid="uid://c3ba3hcphhr6g" path="res://models/appliances/Refrigerator.blend" id="1_tmxmd"]
 [ext_resource type="Script" uid="uid://dp3hw33rnpxm6" path="res://scripts/appliance.gd" id="2_8y3ic"]
 [ext_resource type="PackedScene" uid="uid://dr6gj41i7drxi" path="res://scenes/Appliances/Outlines/refrigerator_outline.tscn" id="3_h8ibq"]
+[ext_resource type="FontFile" uid="uid://0kn36f0xwpcv" path="res://fonts/robot/Roboto-Italic-VariableFont_wdth,wght.ttf" id="4_f6jck"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f6jck"]
 size = Vector3(0.85, 1.83964, 0.684207)
@@ -35,6 +36,7 @@ modulate = Color(0.25098, 1, 0.839216, 1)
 text = "Warranty
 Expiring
 < 1 Month!"
+font = ExtResource("4_f6jck")
 
 [node name="Maintenance_Alert" type="Label3D" parent="Refrigerator2"]
 unique_name_in_owner = true
@@ -47,7 +49,8 @@ modulate = Color(1, 0.576471, 0.25098, 1)
 text = "Check
 Maintenance
 Soon!
-|"
+￬"
+font = ExtResource("4_f6jck")
 
 [node name="Maintenance_Alert_Urgent" type="Label3D" parent="Refrigerator2"]
 unique_name_in_owner = true
@@ -60,7 +63,8 @@ modulate = Color(1, 0.25, 0.25, 1)
 text = "Check
 Maintenance
 Immediately!
-|"
+￬"
+font = ExtResource("4_f6jck")
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

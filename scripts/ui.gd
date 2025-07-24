@@ -188,7 +188,8 @@ func hide_colour_swatches(is_hiding:bool) -> void:
 
 #Window:
 
-func _on_colour_swatches_button_down() -> void:
+func _on_colour_swatches_button_up() -> void:
+	window.populate_swatches()
 	window.show()
 
 func _on_window_close_requested() -> void:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ej0po4ed3rt5"]
+[gd_scene load_steps=6 format=3 uid="uid://ej0po4ed3rt5"]
 
 [ext_resource type="PackedScene" uid="uid://cqum3i7w61nls" path="res://models/appliances/Oven.blend" id="1_5hj28"]
 [ext_resource type="Script" uid="uid://dp3hw33rnpxm6" path="res://scripts/appliance.gd" id="2_a5efc"]
 [ext_resource type="PackedScene" uid="uid://ci3t3br180g2o" path="res://scenes/Appliances/Outlines/oven_outline.tscn" id="3_ai5b6"]
+[ext_resource type="FontFile" uid="uid://0kn36f0xwpcv" path="res://fonts/robot/Roboto-Italic-VariableFont_wdth,wght.ttf" id="4_a5efc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a5efc"]
 size = Vector3(0.778845, 1.21425, 0.685938)
@@ -35,6 +36,7 @@ modulate = Color(0.25, 1, 0.8375, 1)
 text = "Warranty
 Expiring
 < 1 Month!"
+font = ExtResource("4_a5efc")
 
 [node name="Maintenance_Alert" type="Label3D" parent="Oven2"]
 unique_name_in_owner = true
@@ -47,7 +49,8 @@ modulate = Color(1, 0.576471, 0.25098, 1)
 text = "Check
 Maintenance
 Soon!
-|"
+￬"
+font = ExtResource("4_a5efc")
 
 [node name="Maintenance_Alert_Urgent" type="Label3D" parent="Oven2"]
 unique_name_in_owner = true
@@ -60,7 +63,8 @@ modulate = Color(1, 0.25, 0.25, 1)
 text = "Check
 Maintenance
 Immediately!
-|"
+￬"
+font = ExtResource("4_a5efc")
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

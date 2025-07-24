@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c3wkses7xm2wa"]
+
+[node name="BG" type="ColorRect"]
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0.94902, 0.941176, 0.937255, 1)

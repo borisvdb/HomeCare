@@ -6,8 +6,10 @@
 [node name="Contextual_Menu" type="Window"]
 auto_translate_mode = 1
 transparent_bg = true
+gui_embed_subwindows = true
 position = Vector2i(512, 524)
 size = Vector2i(520, 49)
+visible = false
 wrap_controls = true
 borderless = true
 transparent = true

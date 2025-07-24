@@ -14,10 +14,12 @@ func _on_repair_history_button_down() -> void:
 	repair_history.maintenance_threshold = maintenance_threshold
 	repair_history.title = appliance_type + " Repair History"
 	repair_history.populate_entry_list()
+	hide()
 	repair_history.show()
 
 func _on_warranty_info_button_down() -> void:
 	warranty_info.object_id = object_id
 	warranty_info.title = appliance_type + " Warranty Info"
 	warranty_info.populate_info()
+	hide()
 	warranty_info.show()
