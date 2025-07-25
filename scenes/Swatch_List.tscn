@@ -22,6 +22,6 @@ max_text_lines = 2
 auto_height = true
 max_columns = 10
 same_column_width = true
-fixed_column_width = 70
+fixed_column_width = 100
 icon_mode = 0
 icon_scale = 0.25
