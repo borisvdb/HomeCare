@@ -84,6 +84,7 @@ visible = false
 wrap_controls = true
 always_on_top = true
 force_native = true
+min_size = Vector2i(0, 386)
 max_size = Vector2i(1280, 386)
 keep_title_visible = true
 content_scale_aspect = 2
