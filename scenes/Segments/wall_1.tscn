@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ihww5j2mgms5"]
+[gd_scene load_steps=9 format=3 uid="uid://ihww5j2mgms5"]
 
 [ext_resource type="PackedScene" uid="uid://btcohfku6rpci" path="res://models/segments/Wall_1.blend" id="1_677sr"]
 [ext_resource type="PackedScene" uid="uid://k5hao7jkq7ak" path="res://scenes/Rays_1.tscn" id="2_6t75f"]
@@ -11,6 +11,9 @@ size = Vector2(1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kg48b"]
 size = Vector3(0.002, 2.4, 1.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2lbao"]
+size = Vector3(0.15, 2.55, 1.15)
 
 [node name="Wall_1" instance=ExtResource("1_677sr")]
 
@@ -35,3 +38,9 @@ shape = SubResource("BoxShape3D_kg48b")
 [node name="CollisionShape3D_Thin2" type="CollisionShape3D" parent="Area3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.073, 1.2, 0)
 shape = SubResource("BoxShape3D_kg48b")
+
+[node name="Wall_1_Col" type="StaticBody3D" parent="." index="4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_1_Col" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.275, 0)
+shape = SubResource("BoxShape3D_2lbao")
