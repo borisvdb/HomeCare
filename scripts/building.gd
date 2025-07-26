@@ -210,11 +210,9 @@ func combine_meshes() -> void: #Combine meshes as multi mesh for reduced drawcal
 	if occ_walls_arr[stories_handler.current_story].is_empty() and occ_floors_arr[stories_handler.current_story].is_empty():
 		return #Avoid uneccesary loops
 	
-	mm_story_free_container = multimesh_story_container.get_child(0)
+	for mm_free_cont in multimesh_story_container.get_children():
+		mm_free_cont.free() #Free the previous multimeshes
 	
-	if mm_story_free_container:
-		mm_story_free_container.queue_free() #Free the previous multimeshes
-
 	mm_story_free_container = Node3D.new()
 	multimesh_story_container.add_child(mm_story_free_container)
 	
@@ -304,12 +302,13 @@ func combine_meshes() -> void: #Combine meshes as multi mesh for reduced drawcal
 		message.set_message("Saved and batched walls successfully")
 	
 	#End of code
-	
-	var house_scene_saver := HouseSceneSaver.new()
-	add_child(house_scene_saver)
-	house_scene_saver.initialize()
-	house_scene_saver.set_mm_owner()
-	house_scene_saver.save_house()
+	#
+	#var house_scene_saver := HouseSceneSaver.new()
+	#add_child(house_scene_saver)
+	#house_scene_saver.initialize()
+	#house_scene_saver.set_mm_owner()
+	#house_scene_saver.generate_floor_collision_shapes()
+	#house_scene_saver.save_house()
 
 func clear_directory(path : String, will_backup := true) -> void:
 	if !path.begins_with("user://save_data/"):

@@ -32,6 +32,9 @@ func add_mm_to_scene_and_save(n : int, container: Node3D, arr: Array, file_name:
 	return true
 
 func load_mm_data():
+	for mm_free_cont in multimesh_story_container.get_children():
+		mm_free_cont.free() #Free the previous multimeshes
+	
 	var mm_story_free_container = Node3D.new()
 	multimesh_story_container.add_child(mm_story_free_container)
 	
