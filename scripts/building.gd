@@ -302,6 +302,14 @@ func combine_meshes() -> void: #Combine meshes as multi mesh for reduced drawcal
 	
 	if wall_isok and wall_mm_isok and floor_isok and floor_mm_isok and appliance_isok:
 		message.set_message("Saved and batched walls successfully")
+	
+	#End of code
+	
+	var house_scene_saver := HouseSceneSaver.new()
+	add_child(house_scene_saver)
+	house_scene_saver.initialize()
+	house_scene_saver.set_mm_owner()
+	house_scene_saver.save_house()
 
 func clear_directory(path : String, will_backup := true) -> void:
 	if !path.begins_with("user://save_data/"):
