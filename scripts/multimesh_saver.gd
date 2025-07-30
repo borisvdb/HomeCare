@@ -2,6 +2,9 @@ extends Node
 class_name MultimeshSaver
 
 func combine_instances_to_multimeshes(dictionary: Dictionary, story_index: int) -> Array:
+	if dictionary.is_empty():
+		return []
+	
 	var multimeshes := []
 	var mesh_groups := {}
 	

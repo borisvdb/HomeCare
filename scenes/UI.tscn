@@ -172,6 +172,18 @@ text = "🎨"
 [node name="Colour_Swatch_Window" parent="." instance=ExtResource("4_ua6yw")]
 unique_name_in_owner = true
 
+[node name="FPS" type="Button" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(0, 0, 0, 1)
+offset_right = 36.0
+offset_bottom = 21.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 10
+toggle_mode = true
+button_pressed = true
+text = "FPS 00"
+flat = true
+
 [connection signal="button_down" from="MarginContainer/VBoxContainer/Floor_Up" to="." method="_on_floor_up_button_down"]
 [connection signal="button_down" from="MarginContainer/VBoxContainer/Floor_Down" to="." method="_on_floor_down_button_down"]
 [connection signal="button_down" from="MarginContainer/Rotate_CW" to="." method="_on_rotate_cw_button_down"]
@@ -181,3 +193,4 @@ unique_name_in_owner = true
 [connection signal="toggled" from="MarginContainer/Building_Mode" to="." method="_on_building_mode_toggled"]
 [connection signal="button_up" from="MarginContainer/Colour_Swatches" to="." method="_on_colour_swatches_button_up"]
 [connection signal="close_requested" from="Colour_Swatch_Window" to="." method="_on_window_close_requested"]
+[connection signal="toggled" from="FPS" to="." method="_on_button_toggled"]

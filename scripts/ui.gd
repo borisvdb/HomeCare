@@ -33,6 +33,8 @@ const MIN_ZOOM := 0.25
 var current_floor := 0
 var category_index := 0
 
+var fps : Button
+
 func _ready() -> void:
 	current_angle = stored_angle
 	print("stored_angle: ", stored_angle)
@@ -45,6 +47,9 @@ func _ready() -> void:
 	
 	if has_node("FileDialog"):
 		file_dialog = %FileDialog
+	
+	if has_node("FPS"):
+		fps = %FPS
 
 func _unhandled_input(event: InputEvent) -> void:
 	
@@ -252,3 +257,13 @@ func _on_paint_mode_toggled(toggled_on: bool) -> void:
 
 func _on_color_picker_button_color_changed(color: Color) -> void:
 	building.set_color(color)
+
+func _process(_delta: float) -> void:
+	if fps:
+		fps.text = "FPS %d" % [Engine.get_frames_per_second()]
+
+func _on_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		fps.self_modulate = Color.BLACK
+	else:
+		fps.self_modulate = Color.TRANSPARENT
