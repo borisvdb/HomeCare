@@ -224,8 +224,13 @@ func combine_meshes() -> void: #Combine meshes as multi mesh for reduced drawcal
 	mm_floor_story_container = Node3D.new()
 	mm_story_free_container.add_child(mm_floor_story_container)
 	
-	clear_directory("user://save_data/mm_data/mm_walls/backup", false) #clear the backup directory without creating new backup
-	clear_directory("user://save_data/mm_data/mm_walls/")
+	var directory_handler_class : CSharpScript = load("res://scripts/directory_handler.cs")
+	var dir_h : Node = directory_handler_class.new()
+	
+	#clear_directory("user://save_data/mm_data/mm_walls/backup", false) #clear the backup directory without creating new backup
+	#clear_directory("user://save_data/mm_data/mm_walls/")
+	dir_h.ClearDirectory("user://save_data/mm_data/mm_walls/backup", false)
+	dir_h.ClearDirectory("user://save_data/mm_data/mm_walls/", true)
 	
 	var wall_mm_isok : bool = multimesh_handler.add_mm_to_scene_and_save(occ_walls_arr.size(),
 							mm_wall_story_container,
@@ -235,11 +240,15 @@ func combine_meshes() -> void: #Combine meshes as multi mesh for reduced drawcal
 	
 	if !wall_mm_isok:
 		message.set_message("Error batching walls!")
-		clear_directory("user://save_data/mm_data/mm_walls/", false)
-		move_backup_files_up("user://save_data/mm_data/mm_walls/backup")
+		#clear_directory("user://save_data/mm_data/mm_walls/", false)
+		dir_h.ClearDirectory("user://save_data/mm_data/mm_walls/", false)
+		#move_backup_files_up("user://save_data/mm_data/mm_walls/backup")
+		dir_h.MoveBackupFilesUp("user://save_data/mm_data/mm_walls/backup")
 	
-	clear_directory("user://save_data/building_data/building_walls/backup", false) #clear the backup directory
-	clear_directory("user://save_data/building_data/building_walls/")
+	#clear_directory("user://save_data/building_data/building_walls/backup", false) #clear the backup directory
+	#clear_directory("user://save_data/building_data/building_walls/")
+	dir_h.ClearDirectory("user://save_data/building_data/building_walls/backup", false) #clear the backup directory
+	dir_h.ClearDirectory("user://save_data/building_data/building_walls/", true)
 	
 	var wall_isok : bool = wall_saver.save_occ_dict(occ_walls_arr.size(),
 				occ_walls_arr,
@@ -248,11 +257,15 @@ func combine_meshes() -> void: #Combine meshes as multi mesh for reduced drawcal
 	
 	if !wall_isok:
 		message.set_message("Error saving walls!")
-		clear_directory("user://save_data/building_data/building_walls/", false)
-		move_backup_files_up("user://save_data/building_data/building_walls/backup")
+		#clear_directory("user://save_data/building_data/building_walls/", false)
+		dir_h.ClearDirectory("user://save_data/building_data/building_walls/", false)
+		#move_backup_files_up("user://save_data/building_data/building_walls/backup")
+		dir_h.MoveBackupFilesUp("user://save_data/building_data/building_walls/backup")
 	
-	clear_directory("user://save_data/mm_data/mm_floors/backup", false)  #clear the backup directory
-	clear_directory("user://save_data/mm_data/mm_floors/")
+	#clear_directory("user://save_data/mm_data/mm_floors/backup", false)  #clear the backup directory
+	#clear_directory("user://save_data/mm_data/mm_floors/")
+	dir_h.ClearDirectory("user://save_data/mm_data/mm_floors/backup", false)  #clear the backup directory
+	dir_h.ClearDirectory("user://save_data/mm_data/mm_floors/", true)
 	
 	var floor_mm_isok : bool = multimesh_handler.add_mm_to_scene_and_save(occ_floors_arr.size(),
 							mm_floor_story_container,
@@ -262,11 +275,15 @@ func combine_meshes() -> void: #Combine meshes as multi mesh for reduced drawcal
 	
 	if !floor_mm_isok:
 		message.set_message("Error batching floors!")
-		clear_directory("user://save_data/mm_data/mm_floors/", false)
-		move_backup_files_up("user://save_data/mm_data/mm_floors/backup")
+		#clear_directory("user://save_data/mm_data/mm_floors/", false)
+		dir_h.ClearDirectory("user://save_data/mm_data/mm_floors/", false)
+		#move_backup_files_up("user://save_data/mm_data/mm_floors/backup")
+		dir_h.MoveBackupFilesUp("user://save_data/mm_data/mm_floors/backup")
 	
-	clear_directory("user://save_data/building_data/building_floors/backup", false)  #clear the backup directory
-	clear_directory("user://save_data/building_data/building_floors/")
+	#clear_directory("user://save_data/building_data/building_floors/backup", false)  #clear the backup directory
+	#clear_directory("user://save_data/building_data/building_floors/")
+	dir_h.ClearDirectory("user://save_data/building_data/building_floors/backup", false)  #clear the backup directory
+	dir_h.ClearDirectory("user://save_data/building_data/building_floors/", true)
 	
 	var floor_isok : bool = wall_saver.save_occ_dict(occ_floors_arr.size(),
 				occ_floors_arr,
@@ -275,14 +292,18 @@ func combine_meshes() -> void: #Combine meshes as multi mesh for reduced drawcal
 	
 	if !floor_isok:
 		message.set_message("Error saving floors!")
-		clear_directory("user://save_data/building_data/building_floors/", false)
-		move_backup_files_up("user://save_data/building_data/building_floors/backup")
+		#clear_directory("user://save_data/building_data/building_floors/", false)
+		dir_h.ClearDirectory("user://save_data/building_data/building_floors/", false)
+		#move_backup_files_up("user://save_data/building_data/building_floors/backup")
+		dir_h.MoveBackupFilesUp("user://save_data/building_data/building_floors/backup")
 	
 	#---------------------------------------------
 	#Save the appliances
 	
-	clear_directory("user://save_data/building_data/building_appliances/backup", false)  #clear the backup directory
-	clear_directory("user://save_data/building_data/building_appliances/")
+	#clear_directory("user://save_data/building_data/building_appliances/backup", false)  #clear the backup directory
+	#clear_directory("user://save_data/building_data/building_appliances/")
+	dir_h.ClearDirectory("user://save_data/building_data/building_appliances/backup", false)  #clear the backup directory
+	dir_h.ClearDirectory("user://save_data/building_data/building_appliances/", true)
 
 	var appliance_isok : bool = wall_saver.save_occ_dict(occ_appliance_arr.size(),
 					occ_appliance_arr,
@@ -291,8 +312,10 @@ func combine_meshes() -> void: #Combine meshes as multi mesh for reduced drawcal
 	
 	if !appliance_isok:
 		message.set_message("Error saving appliances!")
-		clear_directory("user://save_data/building_data/building_appliances/", false)
-		move_backup_files_up("user://save_data/building_data/building_appliances/backup")
+		#clear_directory("user://save_data/building_data/building_appliances/", false)
+		dir_h.ClearDirectory("user://save_data/building_data/building_appliances/", false)
+		#move_backup_files_up("user://save_data/building_data/building_appliances/backup")
+		dir_h.MoveBackupFilesUp("user://save_data/building_data/building_appliances/backup")
 	
 	#---------------------------------------------
 	
@@ -311,66 +334,66 @@ func combine_meshes() -> void: #Combine meshes as multi mesh for reduced drawcal
 	#house_scene_saver.generate_other_collision_shapes()
 	#house_scene_saver.save_house()
 
-func clear_directory(path : String, will_backup := true) -> void:
-	if !path.begins_with("user://save_data/"):
-		print("DANGER, don't attempt to delete anything other than save data!")
-		return
-	var dir := DirAccess.open(path)
-	if dir == null:
-		push_error("Directory not found: " + path)
-		return
-	
-	dir.list_dir_begin()
-	var file_name := dir.get_next()
-	while file_name != "":
-		if not dir.current_is_dir():
-			var file_path := path + "/" + file_name
-			
-			if will_backup:
-				var backup_file_path := path + "/backup/" + file_name
-				backup_file(file_path, backup_file_path)
-				
-			DirAccess.remove_absolute(file_path)
-		file_name = dir.get_next()
-	dir.list_dir_end()
+#func clear_directory(path : String, will_backup := true) -> void:
+	#if !path.begins_with("user://save_data/"):
+		#print("DANGER, don't attempt to delete anything other than save data!")
+		#return
+	#var dir := DirAccess.open(path)
+	#if dir == null:
+		#push_error("Directory not found: " + path)
+		#return
+	#
+	#dir.list_dir_begin()
+	#var file_name := dir.get_next()
+	#while file_name != "":
+		#if not dir.current_is_dir():
+			#var file_path := path + "/" + file_name
+			#
+			#if will_backup:
+				#var backup_file_path := path + "/backup/" + file_name
+				#backup_file(file_path, backup_file_path)
+				#
+			#DirAccess.remove_absolute(file_path)
+		#file_name = dir.get_next()
+	#dir.list_dir_end()
 
-func move_backup_files_up(backup_dir: String) -> void:
-	var dir := DirAccess.open(backup_dir)
-	if dir == null:
-		push_error("Failed to open backup directory: %s" % backup_dir)
-		return
-	
-	dir.list_dir_begin()
-	var file_name := dir.get_next()
-	while file_name != "":
-		if not dir.current_is_dir():
-			var source_path = backup_dir + "/" + file_name
-			var parent_dir = backup_dir.get_base_dir()
-			var destination_path = parent_dir + "/" + file_name
-			
-			var err := DirAccess.copy_absolute(source_path, destination_path)
-			if err != OK:
-				push_error("Failed to move file: %s" % file_name)
-			#else:
-				#DirAccess.remove_absolute(source_path) #Clear the backup files? Yes? No?
-		
-		file_name = dir.get_next()
-	dir.list_dir_end()
+#func move_backup_files_up(backup_dir: String) -> void:
+	#var dir := DirAccess.open(backup_dir)
+	#if dir == null:
+		#push_error("Failed to open backup directory: %s" % backup_dir)
+		#return
+	#
+	#dir.list_dir_begin()
+	#var file_name := dir.get_next()
+	#while file_name != "":
+		#if not dir.current_is_dir():
+			#var source_path = backup_dir + "/" + file_name
+			#var parent_dir = backup_dir.get_base_dir()
+			#var destination_path = parent_dir + "/" + file_name
+			#
+			#var err := DirAccess.copy_absolute(source_path, destination_path)
+			#if err != OK:
+				#push_error("Failed to move file: %s" % file_name)
+			##else:
+				##DirAccess.remove_absolute(source_path) #Clear the backup files? Yes? No?
+		#
+		#file_name = dir.get_next()
+	#dir.list_dir_end()
 
-func backup_file(path : String, backup_path: String) -> void:
-	var original_file := FileAccess.open(path, FileAccess.READ)
-	if !original_file:
-		return
-		
-	var new_file := FileAccess.open(backup_path, FileAccess.WRITE)
-	if !new_file:
-		return
-		
-	var data := original_file.get_buffer(original_file.get_length())
-	new_file.store_buffer(data)
-			
-	original_file.close()
-	new_file.close()
+#func backup_file(path : String, backup_path: String) -> void:
+	#var original_file := FileAccess.open(path, FileAccess.READ)
+	#if !original_file:
+		#return
+		#
+	#var new_file := FileAccess.open(backup_path, FileAccess.WRITE)
+	#if !new_file:
+		#return
+		#
+	#var data := original_file.get_buffer(original_file.get_length())
+	#new_file.store_buffer(data)
+			#
+	#original_file.close()
+	#new_file.close()
 
 func _process(_delta: float) -> void:
 	
