@@ -45,12 +45,12 @@ shading_mode = 0
 albedo_color = Color(0.258824, 0.556863, 0.933333, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_elqb8"]
-size = Vector2(100, 100)
+size = Vector2(150, 150)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3p2gp"]
 shading_mode = 0
 albedo_texture = ExtResource("14_bb450")
-uv1_scale = Vector3(100.025, 100.025, 100.025)
+uv1_scale = Vector3(150.025, 150.025, 150.025)
 texture_filter = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmy6f"]
@@ -80,7 +80,7 @@ blend_mode = 1
 shading_mode = 0
 albedo_color = Color(1, 1, 1, 0)
 albedo_texture = SubResource("GradientTexture2D_wp0k4")
-uv1_scale = Vector3(100, 100, 100)
+uv1_scale = Vector3(150.025, 150.025, 150.025)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_jlsqs")
