@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://4v1w54iq3mr4"]
+
+[ext_resource type="Shader" uid="uid://c40b2d64t0a4t" path="res://shaders/sobel.gdshader" id="1_4yq1k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ofn6"]
+shader = ExtResource("1_4yq1k")
+shader_parameter/alpha = 0.5
+shader_parameter/outline_color = Color(0.1125, 0.1125, 0.15, 1)
+shader_parameter/edge_threshold = 1.25
+
+[node name="Sobel" type="CanvasLayer"]
+layer = -1
+
+[node name="Sobel" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_2ofn6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

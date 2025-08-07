@@ -8,6 +8,7 @@ extends Node3D
 @onready var ground_collision: StaticBody3D = %GroundCollision
 @onready var multimesh_handler: Node = %MultimeshHandler
 @onready var floor_plans : MeshInstance3D = %FloorPlans
+@onready var sobel_shader : CanvasLayer = %Sobel
 
 @onready var gmesh_spec : MeshInstance3D = %GroundMesh_Spectating
 
@@ -43,6 +44,7 @@ func set_building_mode(is_building) -> void:
 		ground_collision.show()
 		floor_plans.show()
 		
+		sobel_shader.hide()
 		gmesh_spec.hide()
 	else:
 		building.show_marker(false)
@@ -56,6 +58,7 @@ func set_building_mode(is_building) -> void:
 		ground_collision.hide()
 		floor_plans.hide()
 		
+		sobel_shader.show()
 		gmesh_spec.show()
 
 func set_xray_mode(is_xray) -> void:

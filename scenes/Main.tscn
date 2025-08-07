@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ki30i1muyhum"]
+[gd_scene load_steps=35 format=3 uid="uid://ki30i1muyhum"]
 
 [ext_resource type="Script" uid="uid://ddkp1stanbi3b" path="res://scripts/building.gd" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://ccssptg1bxli2" path="res://scripts/main.gd" id="1_jlsqs"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://b2uoajv7xwbgh" path="res://scripts/floor_plans.gd" id="11_qmy6f"]
 [ext_resource type="Material" uid="uid://ckepov0d76chf" path="res://materials/ground_mesh_build.tres" id="12_mwfav"]
 [ext_resource type="Texture2D" uid="uid://ba76yyuhfq4wp" path="res://textures/grids/dark_mode_grid.png" id="14_bb450"]
+[ext_resource type="PackedScene" uid="uid://4v1w54iq3mr4" path="res://scenes/Sobel.tscn" id="15_1iba3"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jlsqs"]
 top_radius = 4.0
@@ -145,6 +146,9 @@ follow_viewport_enabled = true
 unique_name_in_owner = true
 layer = -1
 follow_viewport_enabled = true
+
+[node name="Sobel" parent="Camera_Pivot" instance=ExtResource("15_1iba3")]
+unique_name_in_owner = true
 
 [node name="Camera3D" type="Camera3D" parent="Camera_Pivot"]
 unique_name_in_owner = true
