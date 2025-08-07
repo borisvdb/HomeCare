@@ -187,9 +187,9 @@ func _on_floor_down_button_down() -> void:
 
 func hide_colour_swatches(is_hiding:bool) -> void:
 	if is_hiding:
-		%Colour_Swatches.hide()
+		%Colour_Swatches.get_parent().hide()
 	else:
-		%Colour_Swatches.show()
+		%Colour_Swatches.get_parent().show()
 
 #Window:
 
