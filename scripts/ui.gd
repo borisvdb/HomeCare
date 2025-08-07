@@ -234,12 +234,12 @@ func _on_floor_plans_button_down() -> void:
 		%Floor_Plans_Popup.hide()
 
 func _on_increase_floor_plan_size_button_down() -> void:
-	var incr := 0.005
-	floor_plans.scale += Vector3(incr,incr,incr)
+	floor_plans.base_scale += 0.005
+	floor_plans.adjust_plane_size()
 
 func _on_decrease_floor_plan_size_button_down() -> void:
-	var incr := 0.005
-	floor_plans.scale -= Vector3(incr,incr,incr)
+	floor_plans.base_scale -= 0.005
+	floor_plans.adjust_plane_size()
 
 #For selecting floors and walls
 

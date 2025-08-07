@@ -1,14 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dssmertxp2ted"]
+[gd_scene load_steps=3 format=3 uid="uid://dssmertxp2ted"]
 
 [ext_resource type="PackedScene" uid="uid://ci0fh33hg3oo1" path="res://models/segments/Wall_1_Triangle.blend" id="1_omo6k"]
-[ext_resource type="Material" uid="uid://df5jk7s82pg6" path="res://materials/build_mode/mat_b_Wall_.tres" id="2_3g152"]
 [ext_resource type="Material" uid="uid://4rv56dkqmep8" path="res://materials/build_mode/mat_b_Wall_Trans_Ext.tres" id="3_5oulx"]
 
 [node name="Wall_1_Triangle" instance=ExtResource("1_omo6k")]
 
 [node name="Wall_1_Triangle_001" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_3g152")
-surface_material_override/1 = ExtResource("3_5oulx")
+surface_material_override/0 = ExtResource("3_5oulx")
 
 [node name="Roof_1_001" parent="Wall_1_Triangle_001" index="0"]
 visible = false

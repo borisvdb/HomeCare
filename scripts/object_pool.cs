@@ -4,7 +4,7 @@ using System;
 public partial class object_pool : Node
 {
 
-	private const int MAX_INSTANCES = 100;
+	private const int MAX_INSTANCES = 500;
 	private bool use_fixed_size = true;
 	private static bool preload_instances = false;
 	private Godot.Collections.Array<Godot.Collections.Array<Variant>> pool = new Godot.Collections.Array<Godot.Collections.Array<Variant>>();

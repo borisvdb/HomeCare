@@ -1,6 +1,10 @@
 extends MeshInstance3D
 
 var texture : ImageTexture
+var aspect_ratio : float
+
+var base_scale := 1.0
+var plane_size := Vector3(1, 1, 1)
 
 func load_image(file_path: String):
 	var image_resource = load(file_path)
@@ -20,16 +24,18 @@ func load_image(file_path: String):
 	self.material_override.albedo_texture = texture
 	self.material_override.transparency = false
 	
-	adjust_plane_size(texture)
+	get_aspect_ratio(texture)
 
-func adjust_plane_size(image: ImageTexture):
-	var aspect_ratio = image.get_width() / float(image.get_height())
-	var plane_size = Vector3(1, 1, 1)  # Default size of the plane
+func get_aspect_ratio(image: ImageTexture):
+	aspect_ratio = image.get_width() / float(image.get_height())
+	adjust_plane_size()
 
+func adjust_plane_size():
+	var new_scale := plane_size * base_scale
 	# Adjust the size of the plane based on the aspect ratio
 	if aspect_ratio > 1:
-		plane_size.x *= aspect_ratio  # Wider
+		new_scale.x *= aspect_ratio  # Wider
 	else:
-		plane_size.z /= aspect_ratio  # Taller
+		new_scale.z /= aspect_ratio  # Taller
 
-	self.scale = plane_size
+	self.scale = new_scale

@@ -141,7 +141,7 @@ func add_scenes() -> void:
 	length_category_0.append(1.0)
 	length_category_0.append(0.5)
 	length_category_0.append(0.25)
-	length_category_0.append(1.0)
+	length_category_0.append(0.125)
 	wall_lengths.append(length_category_0)
 	#----------------------------------
 	
