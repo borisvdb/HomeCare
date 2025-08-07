@@ -39,8 +39,8 @@ func _ready() -> void:
 	current_angle = stored_angle
 	print("stored_angle: ", stored_angle)
 	
-	if has_node("MarginContainer/HBoxContainer/TabContainer"):
-		tab_container = $MarginContainer/HBoxContainer/TabContainer
+	if has_node("MarginContainer/PanelContainer2/HBoxContainer/TabContainer"):
+		tab_container = $MarginContainer/PanelContainer2/HBoxContainer/TabContainer
 	
 	if has_node("Colour_Swatch_Window"):
 		window = %Colour_Swatch_Window
